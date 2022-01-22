@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "target": "es5",
+    "module": "esnext",
+    "jsx": "react-jsx",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "declarationMap": true
+  },
+  "exclude": ["node_modules", "build", "dist", "example", "rollup.config.js"],
+  "useTsconfigDeclarationDir": true
+}

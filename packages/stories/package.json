@@ -1,0 +1,40 @@
+{
+  "name": "@react-instagram/stories",
+  "version": "1.0.0",
+  "description": "instagram style stories in react js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "test": "yarn test",
+    "build": "rollup -c",
+    "build:watch": "yarn build -w"
+  },
+  "keywords": [
+    "reactjs",
+    "typescript",
+    "instagram"
+  ],
+  "author": "hannadrehman",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.16.7",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.10",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "@types/styled-components": "^5.1.20",
+    "rollup": "^2.64.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.3"
+  }
+}
