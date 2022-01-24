@@ -1,23 +1,22 @@
-import { useStoriesContext } from '../../Hooks/';
-import { useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import * as CONSTANTS from './Story.constants';
 import styles from './Story.styles.css';
+import { IStoryIndexedObject } from '../../types';
 
 interface IStoryProps {
-  currentIndex: number;
+  story: IStoryIndexedObject;
   onPause: () => void;
   onResume: () => void;
 }
 export function Story(props: IStoryProps) {
-  const { stories } = useStoriesContext();
-  const currentStory = stories[props.currentIndex];
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [showSeeMoreComponent, setShowSeeMoreComponent] = useState(false);
 
   //pause story images/video is loaded.
   useEffect(() => {
     if (
       [CONSTANTS.STORY_TYPES.IMAGE, CONSTANTS.STORY_TYPES.VIDEO].includes(
-        currentStory.type,
+        props.story.type,
       )
     ) {
       props.onPause();
@@ -39,10 +38,10 @@ export function Story(props: IStoryProps) {
       }
     }
 
-    if (currentStory.type === CONSTANTS.STORY_TYPES.VIDEO) {
+    if (props.story.type === CONSTANTS.STORY_TYPES.VIDEO) {
       playVideo();
     }
-  }, [currentStory.type]);
+  }, [props.story.type]);
 
   function imageOnLoad() {
     props.onResume();
@@ -53,37 +52,37 @@ export function Story(props: IStoryProps) {
   }
 
   function getStory() {
-    if (currentStory.type === CONSTANTS.STORY_TYPES.IMAGE) {
+    if (props.story.type === CONSTANTS.STORY_TYPES.IMAGE) {
       return (
         <img
           className={styles.image}
-          src={currentStory.url}
+          src={props.story.url}
           alt="story"
           onLoad={imageOnLoad}
         />
       );
     }
-    if (currentStory.type === CONSTANTS.STORY_TYPES.VIDEO) {
+    if (props.story.type === CONSTANTS.STORY_TYPES.VIDEO) {
       return (
         <video
           className={styles.video}
           ref={videoRef}
           autoPlay={true}
           playsInline={true}
-          webkit-playsinline
+          webkit-playsinline=""
           controls={false}
-          src={currentStory.url}
+          src={props.story.url}
           onLoadedData={videoOnLoad}
         />
       );
     }
-    if (currentStory.type === CONSTANTS.STORY_TYPES.COMPONENT) {
+    if (props.story.type === CONSTANTS.STORY_TYPES.COMPONENT) {
       return (
         <div className={styles.component}>
-          <currentStory.component
+          <props.story.component
             pause={props.onPause}
             resume={props.onResume}
-            storyIndex={props.currentIndex}
+            story={props.story}
           />
         </div>
       );
@@ -92,5 +91,69 @@ export function Story(props: IStoryProps) {
     return null;
   }
 
-  return <div className={styles.wrapper}>{getStory()}</div>;
+  function getHeader() {
+    if (typeof props.story.header === 'function') {
+      return <props.story.header />;
+    }
+    return props.story.header;
+  }
+  function getSeeMore() {
+    const seeMore = props.story.seeMore;
+    const typeOfSeeMore = typeof seeMore;
+    if (['string', 'boolean'].includes(typeOfSeeMore)) {
+      const seeMoreText = typeOfSeeMore === 'string' ? seeMore : 'See More';
+      return (
+        <div className={styles.defaultSeeMore}>
+          <span>^</span>
+          <p>{seeMoreText}</p>
+        </div>
+      );
+    }
+    if (typeOfSeeMore === 'function') {
+      return <props.story.seeMore />;
+    }
+    return props.story.seeMore;
+  }
+
+  function getSeeMoreComponent() {
+    if (typeof props.story.seeMoreComponent === 'function') {
+      return <props.story.seeMoreComponent />;
+    }
+    return props.story.seeMoreComponent;
+  }
+
+  function handleSeeMore() {
+    props.onPause();
+    setShowSeeMoreComponent(true);
+  }
+
+  function handleCloseSeeMore() {
+    props.onResume();
+    setShowSeeMoreComponent(false);
+  }
+  return (
+    <div className={styles.wrapper}>
+      {getStory()}
+      {props.story.header && <div className={styles.header}>{getHeader()}</div>}
+      {props.story.seeMore && (
+        <button
+          type="button"
+          onClick={handleSeeMore}
+          className={styles.seeMoreWrapper}
+        >
+          {getSeeMore()}
+        </button>
+      )}
+      {showSeeMoreComponent &&
+        props.story.seeMore &&
+        props.story.seeMoreComponent && (
+          <div className={styles.seeMoreComponentWrapper}>
+            <button className={styles.closeIcon} onClick={handleCloseSeeMore}>
+              ✕
+            </button>
+            {getSeeMoreComponent()}
+          </div>
+        )}
+    </div>
+  );
 }

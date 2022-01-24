@@ -3,6 +3,9 @@ interface IStoryObject {
   url: string;
   duration: number;
   component?: any;
+  header?: any;
+  seeMore?: any;
+  seeMoreComponent?: any;
 }
 
 interface IStoryIndexedObject extends IStoryObject {

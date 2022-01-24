@@ -86,9 +86,9 @@ export default function Stories({
       <div className={styles.main} style={{ width, height }}>
         <Progress activeStoryIndex={selectedStory.index} isPaused={isPaused} />
         <Story
-          currentIndex={selectedStory.index}
           onPause={handlePause}
           onResume={handleResume}
+          story={selectedStory}
         />
         <Actions
           onNextClick={handleNextClick}
