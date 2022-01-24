@@ -1,7 +1,92 @@
-import { useContext } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 import { StoriesContext } from '../Contexts';
+import { IStoryContext } from '../types';
+
+interface IUseRef {
+  current: any;
+}
 
 export function useStoriesContext() {
-  const context = useContext(StoriesContext);
+  const context: IStoryContext = useContext(StoriesContext);
   return context;
+}
+
+export function usePausableTimeout(
+  callback: () => void,
+  delay: number,
+  pause: boolean,
+) {
+  const savedCallback: IUseRef = useRef();
+  const timeRemaining: IUseRef = useRef(delay);
+  const startTimeRef: IUseRef = useRef(Date.now());
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // reset time remaining everytime delay changes
+  useEffect(() => {
+    timeRemaining.current = delay;
+  }, [delay]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null && pause === false) {
+      startTimeRef.current = Date.now();
+      const id = setTimeout(tick, timeRemaining.current);
+
+      return () => clearTimeout(id);
+    }
+    return () => {};
+  }, [delay, pause]);
+
+  useEffect(() => {
+    if (pause) {
+      timeRemaining.current = delay - (Date.now() - startTimeRef.current);
+    }
+  }, [pause]);
+}
+
+export function useAnimationFrame(
+  callback: (time: number) => void,
+  start: boolean,
+) {
+  const requestRef: IUseRef = useRef();
+  const previousTimeRef: IUseRef = useRef();
+  const callBackRef: IUseRef = useRef(callback);
+
+  useEffect(() => {
+    callBackRef.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function animate(time: number) {
+      if (previousTimeRef.current != undefined) {
+        const deltaTime = time - previousTimeRef.current;
+        callBackRef.current(deltaTime);
+      }
+      previousTimeRef.current = time;
+      if (start === false) {
+      }
+      requestRef.current = requestAnimationFrame(animate);
+    }
+    if (start !== false) {
+      requestRef.current = requestAnimationFrame(animate);
+      return () => {
+        cancelAnimationFrame(requestRef.current);
+        requestRef.current = null;
+        previousTimeRef.current = null;
+      };
+    }
+    return () => {
+      if (requestRef.current) {
+        requestRef.current = null;
+      }
+      cancelAnimationFrame(requestRef.current);
+      previousTimeRef.current = null;
+    };
+  }, [start]);
 }
