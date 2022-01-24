@@ -8,7 +8,6 @@ interface IProgressBarProps {
   isActive: boolean;
   story: IStoryIndexedObject;
   isPaused: boolean;
-  index?: any;
 }
 
 export function ProgressBar(props: IProgressBarProps) {

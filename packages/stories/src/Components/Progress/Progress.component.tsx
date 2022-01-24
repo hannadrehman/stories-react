@@ -15,7 +15,6 @@ export function Progress(props: IProgressProps) {
       {stories.map((story: IStoryIndexedObject) => (
         <ProgressBar
           key={story.index}
-          index={story.index}
           hasStoryPassed={story.index < props.activeStoryIndex}
           isActive={story.index === props.activeStoryIndex}
           story={story}
