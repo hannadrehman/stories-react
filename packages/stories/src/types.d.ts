@@ -7,7 +7,7 @@ interface IStoryObject {
   type: string;
   url: string;
   duration: number;
-  component?: JSX.Element<IStoryComponent>;
+  component?: any
 }
 
 interface IStoryIndexedObject extends IStoryObject {
