@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Stories from '@react-instagram/stories';
+import '@react-instagram/stories/dist/index.css';
 
 const props = {
   stories: [
     {
       type: 'image',
       url: 'https://images.pexels.com/photos/9733197/pexels-photo-9733197.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-      duration: 5000,
     },
     {
       type: 'image',
@@ -79,11 +79,16 @@ const props = {
 };
 
 function App() {
+  const [index, setIndex] = useState(0);
   return (
     <div className="App">
       <div className="story-container">
-        <Stories stories={props.stories} />
+        <Stories
+          stories={props.stories}
+          onStoryChange={(idx) => setIndex(idx)}
+        />
       </div>
+      <h1>{index}</h1>
     </div>
   );
 }

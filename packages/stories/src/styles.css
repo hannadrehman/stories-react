@@ -1,0 +1,5 @@
+.main {
+  position: relative;
+  touch-action: manipulation;
+  background-color: black;
+}

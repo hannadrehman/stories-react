@@ -1,6 +1,6 @@
 import { Fragment, useRef, useState } from 'react';
-import { Left, Right } from './Actions.styled';
 import * as CONSTANTS from './Actions.constants';
+import styles from './Actions.styles.css';
 
 interface IActionsProps {
   onNextClick: () => void;
@@ -64,8 +64,14 @@ export function Actions({
 
   return (
     <Fragment>
-      <Left {...getEvents(CONSTANTS.EVENT_REGION.LEFT)} />
-      <Right {...getEvents(CONSTANTS.EVENT_REGION.RIGHT)} />
+      <div
+        className={styles.left}
+        {...getEvents(CONSTANTS.EVENT_REGION.LEFT)}
+      />
+      <div
+        className={styles.right}
+        {...getEvents(CONSTANTS.EVENT_REGION.RIGHT)}
+      />
     </Fragment>
   );
 }

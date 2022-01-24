@@ -5,6 +5,7 @@ const defaultStoryContext: IStoryContext = {
   stories: [],
   width: '100%',
   height: '100%',
+  defaultDuration: 10000,
 };
 
 export const StoriesContext = createContext(defaultStoryContext);

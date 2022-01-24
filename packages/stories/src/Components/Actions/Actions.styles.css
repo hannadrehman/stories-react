@@ -1,0 +1,21 @@
+.left {
+  position: absolute;
+  width: 50%;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 1;
+  left: 0;
+
+}
+
+.right {
+  position: absolute;
+  width: 50%;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 1;
+  right: 0;
+
+}

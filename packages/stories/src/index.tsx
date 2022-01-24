@@ -1,31 +1,24 @@
-import styled from 'styled-components';
 import { StoriesContext } from './Contexts';
 import { Actions, Progress, Story } from './Components';
 import {
   IStoryObject,
   IStoryProps,
-  IWrapperProps,
   IStoryIndexedObject,
   IStoryContext,
 } from './types';
 import { useEffect, useMemo, useState } from 'react';
 import * as hooks from './Hooks';
-
-const Wrapper = styled.div<IWrapperProps>`
-  position: relative;
-  height: ${(props) => props.height};
-  width: ${(props) => props.width};
-  touch-action: manipulation;
-  background-color: black;
-`;
-
-const DEFAULT_STORY_DURATION = 5000;
+import styles from './styles.css';
 
 export default function Stories({
   stories,
   width = '100%',
   height = '100%',
+  onStoryChange = () => {},
+  currentIndex = 0,
+  defaultDuration = 10000,
 }: IStoryProps): JSX.Element {
+  //
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
     return stories.map((story: IStoryObject, index: number) => ({
       ...story,
@@ -34,7 +27,7 @@ export default function Stories({
   }, [stories]);
 
   const [selectedStory, setSelectedStory] = useState<IStoryIndexedObject>(
-    storiesWithIndex[0],
+    storiesWithIndex[currentIndex],
   );
 
   const firstStoryIndex = 0;
@@ -46,6 +39,7 @@ export default function Stories({
     stories: storiesWithIndex,
     width,
     height,
+    defaultDuration,
   };
   function handleNextClick() {
     if (selectedStory.index < lastStoryIndex) {
@@ -66,7 +60,9 @@ export default function Stories({
 
   useEffect(() => {
     if (selectedStory) {
-      setCurrentStoryDuration(selectedStory.duration || DEFAULT_STORY_DURATION);
+      const duration = selectedStory.duration || defaultDuration;
+      setCurrentStoryDuration(duration);
+      onStoryChange(selectedStory.index);
     }
   }, [selectedStory]);
 
@@ -87,7 +83,7 @@ export default function Stories({
   }
   return (
     <StoriesContext.Provider value={contextValue}>
-      <Wrapper width={width} height={height}>
+      <div className={styles.main} style={{ width, height }}>
         <Progress activeStoryIndex={selectedStory.index} isPaused={isPaused} />
         <Story
           currentIndex={selectedStory.index}
@@ -100,7 +96,7 @@ export default function Stories({
           onPause={handlePause}
           onResume={handleResume}
         />
-      </Wrapper>
+      </div>
     </StoriesContext.Provider>
   );
 }

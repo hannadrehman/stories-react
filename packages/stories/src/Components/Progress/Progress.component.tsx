@@ -1,7 +1,7 @@
-import { Wrapper } from './Progress.styled';
 import { useStoriesContext } from '../../Hooks';
 import { ProgressBar } from '../ProgressBar';
 import { IStoryIndexedObject } from '../../types';
+import styles from './progress.styles.css';
 
 interface IProgressProps {
   activeStoryIndex: number;
@@ -11,7 +11,10 @@ interface IProgressProps {
 export function Progress(props: IProgressProps) {
   const { stories } = useStoriesContext();
   return (
-    <Wrapper numOfStories={stories.length}>
+    <div
+      className={styles.wrapper}
+      style={{ gridTemplateColumns: `repeat(${stories.length},1fr)` }}
+    >
       {stories.map((story: IStoryIndexedObject) => (
         <ProgressBar
           key={story.index}
@@ -21,6 +24,6 @@ export function Progress(props: IProgressProps) {
           isPaused={story.index === props.activeStoryIndex && props.isPaused}
         />
       ))}
-    </Wrapper>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
-import { Wrapper, Image, Video, Component } from './Story.styled';
 import { useStoriesContext } from '../../Hooks/';
 import { useEffect, useRef } from 'react';
 import * as CONSTANTS from './Story.constants';
+import styles from './Story.styles.css';
 
 interface IStoryProps {
   currentIndex: number;
@@ -54,11 +54,19 @@ export function Story(props: IStoryProps) {
 
   function getStory() {
     if (currentStory.type === CONSTANTS.STORY_TYPES.IMAGE) {
-      return <Image src={currentStory.url} alt="story" onLoad={imageOnLoad} />;
+      return (
+        <img
+          className={styles.image}
+          src={currentStory.url}
+          alt="story"
+          onLoad={imageOnLoad}
+        />
+      );
     }
     if (currentStory.type === CONSTANTS.STORY_TYPES.VIDEO) {
       return (
-        <Video
+        <video
+          className={styles.video}
           ref={videoRef}
           autoPlay={true}
           playsInline={true}
@@ -71,18 +79,18 @@ export function Story(props: IStoryProps) {
     }
     if (currentStory.type === CONSTANTS.STORY_TYPES.COMPONENT) {
       return (
-        <Component>
+        <div className={styles.component}>
           <currentStory.component
             pause={props.onPause}
             resume={props.onResume}
             storyIndex={props.currentIndex}
           />
-        </Component>
+        </div>
       );
     }
 
     return null;
   }
 
-  return <Wrapper>{getStory()}</Wrapper>;
+  return <div className={styles.wrapper}>{getStory()}</div>;
 }

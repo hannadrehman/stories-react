@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Wrapper, Bar } from './ProgressBar.styled';
 import * as hooks from '../../Hooks/';
 import { IStoryIndexedObject } from '../../types';
+import styles from './ProgressBar.styles.css';
 
 interface IProgressBarProps {
   hasStoryPassed: boolean;
@@ -11,6 +11,7 @@ interface IProgressBarProps {
 }
 
 export function ProgressBar(props: IProgressBarProps) {
+  const { defaultDuration } = hooks.useStoriesContext();
   const barRef = useRef<HTMLDivElement>(null);
   const barWrapperRef = useRef<HTMLDivElement>(null);
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -67,13 +68,15 @@ export function ProgressBar(props: IProgressBarProps) {
       return;
     }
 
-    step = barWrapperRef?.current?.offsetWidth / (props.story.duration / time);
+    step =
+      barWrapperRef?.current?.offsetWidth /
+      ((props.story.duration || defaultDuration) / time);
     barRef.current.style.width = `${barWidth + step}px`;
   }, shouldAnimate);
 
   return (
-    <Wrapper ref={barWrapperRef}>
-      <Bar ref={barRef} />
-    </Wrapper>
+    <div className={styles.wrapper} ref={barWrapperRef}>
+      <div className={styles.bar} ref={barRef} />
+    </div>
   );
 }
