@@ -43,6 +43,10 @@ export function Story(props: IStoryProps) {
     }
   }, [props.story.type]);
 
+  useEffect(() => {
+    setShowSeeMoreComponent(false);
+  }, [props.story]);
+
   function imageOnLoad() {
     props.onResume();
   }
