@@ -55,7 +55,7 @@ export default function ImagesStories() {
 
 
 | Property                 | Type                          | Defaul        | Description                                                                             |
-| ------------------------ |:-----------------------------:| -------------:| ---------------------------------------------------------------------------------------:|
+| ------------------------ | ------------------------------| --------------| --------------------------------------------------------------------------------------- |
 | `stories`                | `IStoryObject[]`              | `[]`          |  An array of story objects. description of `IStoryObject` is mentioned below            |
 | `height`                 | `string`                      | `100%`        |  Height of story container                                                              |
 | `width`                  | `string`                      | `100%`        |  Width of story container                                                               |
@@ -66,7 +66,7 @@ export default function ImagesStories() {
 ## IStoryObject
 
 | Property              | Type                             | Defaul       | Description                                                 |
-| --------------------- |:--------------------------------:| ------------:| -----------------------------------------------------------:|
+| --------------------- |----------------------------------| -------------| ------------------------------------------------------------|
 | `type`                | `image|video|component`          | `-`          |  type of story to render                                    |
 | `url`                 | `string`                         | `-`          |  url of a story (image & video only)                        |
 | `duration`            | `duration`                       | `10000`      |  duration in ms of the story                                |
