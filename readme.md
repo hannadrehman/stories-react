@@ -67,11 +67,11 @@ export default function ImagesStories() {
 
 | Property              | Type                                 | Defaul       | Description                                                 |
 | --------------------- |--------------------------------------| -------------| ------------------------------------------------------------|
-| `type`                | `image | video | component`          | `-`          |  type of story to render                                    |
+| `type`                | `image , video , component`          | `-`          |  type of story to render                                    |
 | `url`                 | `string`                             | `-`          |  url of a story (image & video only)                        |
 | `duration`            | `duration`                           | `10000`      |  duration in ms of the story                                |
 | `component`           | `React Component`                    | `-`          |  custom component to render as a story                      |
 | `header`              | `React Component`                    | `-`          |  header of a story                                          |
-| `seeMore`             | `string | boolean | React Component` | `true`       |  See more action text                                       |
+| `seeMore`             | `string , boolean , React Component` | `true`       |  See more action text                                       |
 | `seeMoreComponent`    | `React Component`                    | `-`          |  see more component opens after clicking see more           |
 
