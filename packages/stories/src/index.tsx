@@ -11,7 +11,7 @@ import * as hooks from './Hooks';
 import styles from './styles.css';
 
 export default function Stories({
-  stories,
+  stories = [],
   width = '100%',
   height = '100%',
   onStoryChange = () => {},
