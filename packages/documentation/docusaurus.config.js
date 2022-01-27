@@ -15,8 +15,7 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'hannadrehman', // Usually your GitHub org/user name.
   projectName: 'stories-react', // Usually your repo name.
-  deploymentBranch: 'gh-pages'
-
+  deploymentBranch: 'gh-pages',
   presets: [
     [
       'classic',
