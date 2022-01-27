@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'React Stories',
   tagline: 'Instagram like stories for your web project',
-  url: 'https://hannadrehman.github.io/stories-react/',
+  url: 'https://hannadrehman.github.io/',
   baseUrl: '/stories-react/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -39,7 +39,24 @@ const config = {
   themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
+        switchConfig: {
+          darkIcon: '🌙',
+          darkIconStyle: {
+            marginLeft: '2px',
+          },
+          // Unicode icons such as '\u2600' will work
+          // Unicode with 5 chars require brackets: '\u{1F602}'
+          lightIcon: '\u{1F602}',
+          lightIconStyle: {
+            marginLeft: '1px',
+          },
+        },
+      },
       navbar: {
         title: 'React Stories',
         logo: {
@@ -91,12 +108,11 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        theme: require('prism-react-renderer/themes/dracula'),
       },
       liveCodeBlock: {
         playgroundPosition: 'top',
       },
-    }),
+    },
 };
 
 module.exports = config;
