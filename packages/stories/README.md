@@ -3,7 +3,10 @@
 
 <p align="center"><a href="">Homepage</a>
 
-[add screenshot here]
+<p align="center">
+<img alt="hero" src="https://i.imgur.com/q3Y4ApR.png" width="400">
+</p>
+
 
 # Install
 ```sh
