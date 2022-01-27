@@ -5,7 +5,17 @@
   width: 100%;
 }
 
+.featureImgBlock {
+  height:200px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 100%;
+}
+
+.flexCenter {
+  display:flex;
+  justify-content: center;
 }
