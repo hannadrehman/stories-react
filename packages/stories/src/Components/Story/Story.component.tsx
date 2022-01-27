@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as CONSTANTS from './Story.constants';
 import styles from './Story.styles.css';
 import { IStoryIndexedObject } from '../../types';
@@ -51,7 +51,8 @@ export function Story(props: IStoryProps) {
     props.onResume();
   }
 
-  function videoOnLoad() {
+  function handleVideoLoaded() {
+    console.log('loaded');
     props.onResume();
   }
 
@@ -76,7 +77,7 @@ export function Story(props: IStoryProps) {
           webkit-playsinline=""
           controls={false}
           src={props.story.url}
-          onLoadedData={videoOnLoad}
+          onLoadedData={handleVideoLoaded}
         />
       );
     }

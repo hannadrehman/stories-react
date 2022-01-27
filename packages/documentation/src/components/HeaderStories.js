@@ -3,7 +3,6 @@ import Stories from 'react-stories';
 import 'react-stories/dist/index.css';
 
 function Head(props) {
-  console.log(props);
   return (
     <div
       style={{

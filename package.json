@@ -5,7 +5,6 @@
   ],
   "version": "1.0.0",
   "description": "instagram style stories in react js",
-  "main": "index.js",
   "scripts": {
     "test": "yarn test",
     "lint": "eslint . --ext .ts"
@@ -13,9 +12,16 @@
   "keywords": [
     "reactjs",
     "typescript",
-    "instagram"
+    "instagram",
+    "stories"
   ],
-  "author": "hannadrehman",
+  "homepage": "https://github.com/hannadrehman/react-stories",
+  "bugs": "https://github.com/hannadrehman/react-stories/issues",
+  "author": {
+    "name": "Hannad Rehman",
+    "email": "hannad63@gmail.com",
+    "url": "https://hannadrehman.com"
+  },
   "license": "MIT",
   "devDependencies": {
     "eslint": "^8.7.0",
