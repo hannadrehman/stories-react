@@ -94,6 +94,18 @@ export default function HeaderStories() {
         />
       ),
     },
+    {
+      type: 'image',
+      url: 'https://images.pexels.com/photos/10985425/pexels-photo-10985425.jpeg?w=300',
+      duration: 15000,
+      header: (
+        <Head
+          name="hannad"
+          url="https://www.w3schools.com/howto/img_avatar.png"
+          time="4"
+        />
+      ),
+    },
   ];
 
   return (

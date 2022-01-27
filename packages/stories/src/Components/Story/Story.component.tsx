@@ -138,7 +138,7 @@ export function Story(props: IStoryProps) {
     setShowSeeMoreComponent(false);
   }
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} key={props.story.index}>
       {getStory()}
       {props.story.header && <div className={styles.header}>{getHeader()}</div>}
       {props.story.seeMore && (

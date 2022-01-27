@@ -151,6 +151,11 @@ export default function ComponentStories() {
       type: 'component',
       component: ComponentApi,
     },
+    {
+      type: 'component',
+      duration: 9000,
+      component: HelpText,
+    },
   ];
 
   return (

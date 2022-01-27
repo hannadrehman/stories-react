@@ -45,7 +45,7 @@ function SeeMoreComponent() {
   );
 }
 
-export default function ImagesStories() {
+export default function SeeMoreStories() {
   const stories = [
     {
       type: 'image',
@@ -70,6 +70,13 @@ export default function ImagesStories() {
           <button>custom see more button</button>
         </div>
       ),
+      seeMoreComponent: SeeMoreComponent,
+    },
+    {
+      type: 'image',
+      url: 'https://images.pexels.com/photos/10985425/pexels-photo-10985425.jpeg?w=300',
+      duration: 5000,
+      seeMore: true,
       seeMoreComponent: SeeMoreComponent,
     },
   ];
