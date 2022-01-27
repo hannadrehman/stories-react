@@ -8,13 +8,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'React Stories',
   tagline: 'Instagram like stories for your web project',
-  url: 'https://github.com/hannadrehman/react-stories',
+  url: 'https://github.com/hannadrehman/stories-react',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'HannadRehman', // Usually your GitHub org/user name.
-  projectName: 'react-stories', // Usually your repo name.
+  projectName: 'stories-react', // Usually your repo name.
 
   presets: [
     [
@@ -25,7 +25,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/hannadrehman/react-stories/tree/main/packages/documentation/',
+            'https://github.com/hannadrehman/stories-react/tree/main/packages/documentation/',
         },
         theme: {
           customCss: [
@@ -54,7 +54,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://github.com/hannadrehman/react-stories',
+            href: 'https://github.com/hannadrehman/stories-react',
             label: 'GitHub',
             position: 'right',
           },
@@ -81,7 +81,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/hannadrehman/react-stories',
+                href: 'https://github.com/hannadrehman/stories-react',
               },
             ],
           },

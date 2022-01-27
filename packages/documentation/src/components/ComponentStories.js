@@ -1,6 +1,6 @@
 import React from 'react';
-import Stories from 'react-stories';
-import 'react-stories/dist/index.css';
+import Stories from 'stories-react';
+import 'stories-react/dist/index.css';
 
 function Copy() {
   return (

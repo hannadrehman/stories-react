@@ -13,7 +13,7 @@ Let's discover **React Instagram Stories** in less than **5 minutes**.
 
 
 ```shell
-npm install react-stories
+npm install stories-react
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ npm install react-stories
 
 ```jsx
 
-import Stories from 'react-stories';
+import Stories from 'stories-react';
 
 const storySource = [
   {

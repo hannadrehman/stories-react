@@ -1,5 +1,5 @@
 {
-  "name": "react-stories",
+  "name": "stories-react",
   "version": "1.0.0",
   "description": "instagram style stories in react js",
   "main": "dist/index.js",
@@ -16,8 +16,8 @@
     "instagram",
     "stories"
   ],
-  "homepage": "https://github.com/hannadrehman/react-stories",
-  "bugs": "https://github.com/hannadrehman/react-stories/issues",
+  "homepage": "https://github.com/hannadrehman/stories-react",
+  "bugs": "https://github.com/hannadrehman/stories-react/issues",
   "author": {
     "name": "Hannad Rehman",
     "email": "hannad63@gmail.com",

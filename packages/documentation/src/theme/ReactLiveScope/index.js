@@ -6,8 +6,8 @@
  */
 
 import React from 'react';
-import Stories from 'react-stories';
-import storyStyles from 'react-stories';
+import Stories from 'stories-react';
+import storyStyles from 'stories-react';
 
 // Add react-live imports you need here
 const ReactLiveScope = {
