@@ -16,7 +16,7 @@ const FeatureList = [
   {
     title: 'Light weight',
     url: require('../../static/img/3.jpg').default,
-    description: <>its just 2Kb gzipped</>,
+    description: <>its just 3Kb gzipped</>,
   },
   {
     title: 'Focus on What Matters',
