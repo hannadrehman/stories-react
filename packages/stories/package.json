@@ -16,6 +16,7 @@
     "instagram",
     "stories"
   ],
+  "repository": "https://github.com/hannadrehman/stories-react/",
   "homepage": "https://hannadrehman.github.io/stories-react/",
   "bugs": "https://github.com/hannadrehman/stories-react/issues",
   "author": {

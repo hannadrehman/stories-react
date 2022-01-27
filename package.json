@@ -15,7 +15,8 @@
     "instagram",
     "stories"
   ],
-  "homepage": "https://github.com/hannadrehman/stories-react",
+  "repository": "https://github.com/hannadrehman/stories-react/",
+  "homepage": "https://hannadrehman.github.io/stories-react/",
   "bugs": "https://github.com/hannadrehman/stories-react/issues",
   "author": {
     "name": "Hannad Rehman",
@@ -24,16 +25,16 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^8.7.0",
-    "jest": "^27.4.7",
-    "typescript": "^4.5.4",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
+    "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^25.7.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
-    "prettier": "^2.5.1"
+    "jest": "^27.4.7",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
   }
 }
