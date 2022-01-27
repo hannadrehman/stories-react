@@ -14,7 +14,7 @@ npm install --save stories-react
 
 # Demo
 
-You can find working demo [here](https://hannadrehman.github.io/stories-react/docs/intro)
+You can find working demo [here](https://hannadrehman.github.io/stories-react/)
 
 # Usage
 
