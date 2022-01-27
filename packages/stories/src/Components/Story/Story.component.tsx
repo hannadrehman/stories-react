@@ -129,6 +129,7 @@ export function Story(props: IStoryProps) {
   function handleSeeMore() {
     props.onPause();
     setShowSeeMoreComponent(true);
+    props.story.onSeeMoreClick?.(props.story.index);
   }
 
   function handleCloseSeeMore() {

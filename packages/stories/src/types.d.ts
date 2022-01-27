@@ -6,6 +6,7 @@ interface IStoryObject {
   header?: any;
   seeMore?: any;
   seeMoreComponent?: any;
+  onSeeMoreClick?: (storyIndex: number) => void;
 }
 
 interface IStoryIndexedObject extends IStoryObject {

@@ -74,4 +74,5 @@ export default function ImagesStories() {
 | `header`              | `React Component`                    | `-`          |  header of a story                                          |
 | `seeMore`             | `string , boolean , React Component` | `true`       |  See more action text                                       |
 | `seeMoreComponent`    | `React Component`                    | `-`          |  see more component opens after clicking see more           |
+| `onSeeMoreClick`      | `function(index:number)`             | `-`          |  Callback called when story see more is clicked                                                     |
 
