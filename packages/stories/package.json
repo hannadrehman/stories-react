@@ -1,5 +1,5 @@
 {
-  "name": "@react-instagram/stories",
+  "name": "react-stories",
   "version": "1.0.0",
   "description": "instagram style stories in react js",
   "main": "dist/index.js",

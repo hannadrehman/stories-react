@@ -1,4 +1,4 @@
-<h1 style="margin: 0" align="center">react-instagram-stories</h1>
+<h1 style="margin: 0" align="center">react-stories</h1>
 <p align="center">A React component For Instagram like stories</p>
 
 <p align="center"><a href="">Homepage</a>
@@ -7,7 +7,7 @@
 
 # Install
 ```sh
-npm install --save react-instagram-stories
+npm install --save react-stories
 ```
 
 # Demo
@@ -18,8 +18,8 @@ You can find working demo here [add link to the docs demo page]
 
 ```jsx
 import React from 'react';
-import Stories from '@react-instagram/stories';
-import '@react-instagram/stories/dist/index.css';
+import Stories from 'react-stories';
+import 'react-stories/dist/index.css';
 
 export default function ImagesStories() {
   const stories = [

@@ -6,15 +6,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'React Instagram Stories',
+  title: 'React Stories',
   tagline: 'Instagram like stories for your web project',
-  url: 'https://github.com/hannadrehman/react-instagram-stories',
+  url: 'https://github.com/hannadrehman/react-stories',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'HannadRehman', // Usually your GitHub org/user name.
-  projectName: 'react-instagram-stories', // Usually your repo name.
+  projectName: 'react-stories', // Usually your repo name.
 
   presets: [
     [
@@ -25,7 +25,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/hannadrehman/react-instagram-stories/tree/main/packages/documentation/',
+            'https://github.com/hannadrehman/react-stories/tree/main/packages/documentation/',
         },
         theme: {
           customCss: [
@@ -41,9 +41,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'React Instagram Stories',
+        title: 'React Stories',
         logo: {
-          alt: 'React Instagram Stories',
+          alt: 'React Stories',
           src: 'img/logo.jpg',
         },
         items: [
@@ -54,7 +54,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://github.com/hannadrehman/react-instagram-stories',
+            href: 'https://github.com/hannadrehman/react-stories',
             label: 'GitHub',
             position: 'right',
           },
@@ -81,12 +81,12 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/hannadrehman/react-instagram-stories',
+                href: 'https://github.com/hannadrehman/react-stories',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} React Instagram Stories. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} React Stories. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

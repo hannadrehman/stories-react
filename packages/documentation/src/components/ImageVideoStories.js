@@ -1,6 +1,6 @@
 import React from 'react';
-import Stories from '@react-instagram/stories';
-import '@react-instagram/stories/dist/index.css';
+import Stories from 'react-stories';
+import 'react-stories/dist/index.css';
 
 export default function ImageVideoStories() {
   const stories = [
@@ -31,14 +31,15 @@ export default function ImageVideoStories() {
     },
   ];
   return (
-    <div style={{display:'flex', justifyContent:'center',width:'100%', marginBottom:'16px'}}>
-      <Stories
-        width="400px"
-        height="600px"
-        stories={stories}
-      />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        width: '100%',
+        marginBottom: '16px',
+      }}
+    >
+      <Stories width="400px" height="600px" stories={stories} />
     </div>
   );
 }
-
-
