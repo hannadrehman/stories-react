@@ -44,7 +44,7 @@ const config = {
         title: 'React Instagram Stories',
         logo: {
           alt: 'React Instagram Stories',
-          src: 'img/logo.svg',
+          src: 'img/logo.jpg',
         },
         items: [
           {
