@@ -11,7 +11,7 @@ export default function ImageVideoStories() {
     },
     {
       type: 'video',
-      url: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+      url: 'http://techslides.com/demos/sample-videos/small.mp4',
       duration: 5000,
     },
     {
@@ -20,9 +20,9 @@ export default function ImageVideoStories() {
       url: 'https://images.pexels.com/photos/9733197/pexels-photo-9733197.jpeg?w=300',
     },
     {
-      duration: 90000,
       type: 'video',
-      url: 'https://jsoncompare.org/LearningContainer/SampleFiles/Video/MP4/Sample-MP4-Video-File-Download.mp4',
+      duration: 6000,
+      url: 'https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4',
     },
     {
       duration: 7000,
