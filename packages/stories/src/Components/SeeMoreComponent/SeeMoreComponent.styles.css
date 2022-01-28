@@ -1,0 +1,35 @@
+.seeMoreComponentWrapper {
+   background-color: white;
+   max-height: 100%;
+   overflow-y: auto;
+   position: absolute;
+   left:0;
+   right:0;
+   z-index:3;
+   animation: up 200ms ease-in-out;
+   animation-fill-mode: forwards;
+   top: 0;
+   bottom: 0;
+}
+
+.closeIcon {
+   position: absolute;
+   top:0;
+   padding:16px;
+   outline: none;
+   background-color: inherit;
+   border:none;
+   outline:none;
+   cursor: pointer;
+   font-size: 16px;
+   right: 0;
+   top: 0;
+   background: transparent;
+
+}
+
+@keyframes up {
+  from {transform:  translateY(10%); }
+  to{transform:  translateY(0);}
+}
+

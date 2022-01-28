@@ -1,7 +1,13 @@
 <h1 style="margin: 0" align="center">stories-react</h1>
 <p align="center">A React component For Instagram like stories</p>
 
-<p align="center"><a href="">Homepage</a>
+<p align="center"><a href="https://hannadrehman.github.io/stories-react/">Homepage</a>
+
+<div align="center">
+  <a href="https://www.npmjs.com/package/react-insta-stories">
+    <img alt="NPM" src="https://img.shields.io/npm/v/stories-react" />
+  </a>
+</div>
 
 <p align="center">
 <img alt="hero" src="https://i.imgur.com/q3Y4ApR.png" width="400">
