@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'React Stories',
-  tagline: 'Instagram like stories for your web project',
+  tagline: 'Add instagram like stories to your web project',
   url: 'https://hannadrehman.github.io/',
   baseUrl: '/stories-react/',
   onBrokenLinks: 'throw',
