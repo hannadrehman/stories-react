@@ -12,7 +12,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: gh-pages
-      run: git merge main
 
     - name: Setup NodeJs
       uses: actions/setup-node@v2
