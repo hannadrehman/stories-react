@@ -18,7 +18,6 @@ export default function Stories({
   currentIndex = 0,
   defaultDuration = 10000,
 }: IStoryProps): JSX.Element {
-  //
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
     return stories.map((story: IStoryObject, index: number) => ({
       ...story,
@@ -34,13 +33,6 @@ export default function Stories({
   const lastStoryIndex = stories.length - 1;
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
-  const contextValue: IStoryContext = {
-    stories: storiesWithIndex,
-    width,
-    height,
-    defaultDuration,
-    isPaused,
-  };
   function handleNextClick() {
     if (selectedStory.index < lastStoryIndex) {
       setSelectedStory((prev) => {
@@ -58,6 +50,13 @@ export default function Stories({
     }
   }
 
+  function handlePause() {
+    setIsPaused(true);
+  }
+  function handleResume() {
+    setIsPaused(false);
+  }
+
   useEffect(() => {
     if (selectedStory) {
       onStoryChange(selectedStory.index);
@@ -71,12 +70,15 @@ export default function Stories({
     selectedStory.duration || defaultDuration,
     isPaused,
   );
-  function handlePause() {
-    setIsPaused(true);
-  }
-  function handleResume() {
-    setIsPaused(false);
-  }
+
+  const contextValue: IStoryContext = {
+    stories: storiesWithIndex,
+    width,
+    height,
+    defaultDuration,
+    isPaused,
+  };
+
   return (
     <StoriesContext.Provider value={contextValue}>
       <div className={styles.main} style={{ width, height }}>

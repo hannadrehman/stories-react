@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Create Instagram Stories for your web app"
+      description="Add Instagram like stories to your web application"
     >
       <HomepageHeader />
       <main>

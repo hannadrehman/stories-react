@@ -27,6 +27,19 @@
   animation: spin 1s linear infinite;
 }
 
+.soundIcon {
+  position: absolute;
+  padding:16px;
+  top:0;
+  right:0;
+  z-index:2;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
