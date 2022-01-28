@@ -36,16 +36,18 @@ export function usePausableTimeout(
     }
     if (delay !== null && pause === false) {
       startTimeRef.current = Date.now();
-      const id = setTimeout(tick, timeRemaining.current);
-
-      return () => clearTimeout(id);
+      const timerId = setTimeout(tick, timeRemaining.current);
+      return () => {
+        clearTimeout(timerId);
+      };
     }
     return () => {};
   }, [delay, pause]);
 
   useEffect(() => {
     if (pause) {
-      timeRemaining.current = delay - (Date.now() - startTimeRef.current);
+      timeRemaining.current =
+        timeRemaining.current - (Date.now() - startTimeRef.current);
     }
   }, [pause]);
 }
@@ -69,8 +71,6 @@ export function useAnimationFrame(
         callBackRef.current(deltaTime);
       }
       previousTimeRef.current = time;
-      if (start === false) {
-      }
       requestRef.current = requestAnimationFrame(animate);
     }
     if (start !== false) {

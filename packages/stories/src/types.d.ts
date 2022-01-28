@@ -27,6 +27,7 @@ export interface IStoryContext {
   height?: '100%';
   width?: '100%';
   defaultDuration: number;
+  isPaused: boolean;
 }
 
 export interface IStoryComponentProps {
