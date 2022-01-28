@@ -1,6 +1,6 @@
 {
   "name": "stories-react",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "instagram style stories in react js",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
