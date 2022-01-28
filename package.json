@@ -6,6 +6,9 @@
   "version": "1.0.0",
   "description": "instagram style stories in react js",
   "scripts": {
+    "start:docs": "cd ./packages/documentation/ && yarn start",
+    "build:stories": "cd ./packages/stories/ && yarn build:watch",
+    "build:docs": "cd ./packages/documentation/ && yarn build && yarn mv",
     "test": "yarn test",
     "lint": "eslint . --ext .ts"
   },
