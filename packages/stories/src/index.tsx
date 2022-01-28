@@ -32,7 +32,6 @@ export default function Stories({
 
   const firstStoryIndex = 0;
   const lastStoryIndex = stories.length - 1;
-  const [currentStoryDuration, setCurrentStoryDuration] = useState<any>(null);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
   const contextValue: IStoryContext = {
@@ -40,6 +39,7 @@ export default function Stories({
     width,
     height,
     defaultDuration,
+    isPaused,
   };
   function handleNextClick() {
     if (selectedStory.index < lastStoryIndex) {
@@ -60,18 +60,15 @@ export default function Stories({
 
   useEffect(() => {
     if (selectedStory) {
-      const duration = selectedStory.duration || defaultDuration;
-      setCurrentStoryDuration(duration);
       onStoryChange(selectedStory.index);
     }
   }, [selectedStory]);
 
   hooks.usePausableTimeout(
     () => {
-      setCurrentStoryDuration(null);
       handleNextClick();
     },
-    currentStoryDuration,
+    selectedStory.duration || defaultDuration,
     isPaused,
   );
   function handlePause() {
@@ -85,6 +82,7 @@ export default function Stories({
       <div className={styles.main} style={{ width, height }}>
         <Progress activeStoryIndex={selectedStory.index} isPaused={isPaused} />
         <Story
+          key={selectedStory.index}
           onPause={handlePause}
           onResume={handleResume}
           story={selectedStory}
