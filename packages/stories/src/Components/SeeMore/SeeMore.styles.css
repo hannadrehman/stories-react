@@ -1,0 +1,33 @@
+.seeMoreWrapper {
+  position:absolute;
+  bottom:24px;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:center;
+  width: 100%;
+  outline: none;
+  background-color: inherit;
+  border:none;
+  outline:none;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.defaultSeeMore{
+  display:flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  color:white;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 0.8;
+}
+
+.defaultSeeMore p {
+  margin:0;
+  padding:0;
+}
+

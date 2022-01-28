@@ -74,7 +74,6 @@ export default function Stories({
     currentStoryDuration,
     isPaused,
   );
-
   function handlePause() {
     setIsPaused(true);
   }
