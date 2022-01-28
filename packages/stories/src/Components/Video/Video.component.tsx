@@ -5,18 +5,19 @@ import * as hooks from '../../Hooks';
 import { SoundIcon } from '../SoundIcon';
 
 const key = 'RSIsMute';
-window?.localStorage.setItem(key, 'true');
+const WINDOW: any = typeof window === 'undefined' ? {} : window;
+WINDOW?.localStorage?.setItem(key, 'true');
 
 export function Video(props: IStoryComponentProps) {
   const { isPaused } = hooks.useStoriesContext();
   const [isMuted, setIsMuted] = useState(
-    window?.localStorage.getItem(key) === 'true',
+    WINDOW?.localStorage?.getItem(key) === 'true',
   );
   const [showLoader, setShowLoader] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   function setMute(value: boolean) {
-    window?.localStorage.setItem(key, String(value));
+    WINDOW?.localStorage?.setItem(key, String(value));
     setIsMuted(value);
   }
 
