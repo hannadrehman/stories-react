@@ -11,14 +11,25 @@ export default function ImageVideoStories() {
     },
     {
       type: 'video',
-      url: 'http://techslides.com/demos/sample-videos/small.mp4',
-      duration: 5000,
+      url: 'https://assets.mixkit.co/videos/preview/mixkit-man-dancing-under-changing-lights-1240-large.mp4',
+      duration: 28000,
     },
     {
       type: 'image',
       duration: 6000,
       url: 'https://images.pexels.com/photos/9733197/pexels-photo-9733197.jpeg?w=300',
     },
+    {
+      type: 'video',
+      url: 'https://assets.mixkit.co/videos/preview/mixkit-mother-with-her-little-daughter-eating-a-marshmallow-in-nature-39764-large.mp4',
+      duration: 10000,
+    },
+    {
+      type: 'video',
+      url: 'https://assets.mixkit.co/videos/preview/mixkit-family-walking-together-in-nature-39767-large.mp4',
+      duration: 10000,
+    },
+
     {
       type: 'video',
       duration: 6000,
