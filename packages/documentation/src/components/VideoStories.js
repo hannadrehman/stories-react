@@ -6,7 +6,7 @@ export default function VideoStories() {
   const stories = [
     {
       type: 'video',
-      url: 'http://techslides.com/demos/sample-videos/small.mp4',
+      url: 'https://assets.mixkit.co/videos/preview/mixkit-man-dancing-under-changing-lights-1240-large.mp4',
       duration: 5000,
     },
     {
