@@ -7,7 +7,17 @@ export default function VideoStories() {
     {
       type: 'video',
       url: 'https://assets.mixkit.co/videos/preview/mixkit-man-dancing-under-changing-lights-1240-large.mp4',
-      duration: 5000,
+      duration: 28000,
+    },
+    {
+      type: 'video',
+      url: 'https://assets.mixkit.co/videos/preview/mixkit-mother-with-her-little-daughter-eating-a-marshmallow-in-nature-39764-large.mp4',
+      duration: 10000,
+    },
+    {
+      type: 'video',
+      url: 'https://assets.mixkit.co/videos/preview/mixkit-family-walking-together-in-nature-39767-large.mp4',
+      duration: 10000,
     },
     {
       type: 'video',
