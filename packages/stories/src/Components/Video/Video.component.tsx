@@ -43,9 +43,12 @@ export function Video(props: IStoryComponentProps) {
   }, [isPaused]);
 
   function handleLoad() {
+    console.log('loaded');
     setTimeout(() => {
+      console.log('timed loaded');
       props.onResume();
       setShowLoader(false);
+      console.log('dont show loader');
     }, 4);
   }
   return (
