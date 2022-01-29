@@ -2,7 +2,7 @@ name: Create Docs
 on:
   push:
     branches:
-      - main
+      - feat/gh-actions
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,8 +10,7 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
-      with:
-        ref: gh-pages
+      run: git checkout gh-pages
 
     - name: Setup NodeJs
       uses: actions/setup-node@v2
