@@ -20,7 +20,7 @@ const config = {
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
@@ -33,7 +33,11 @@ const config = {
             require.resolve('../stories/dist/index.css'),
           ],
         },
-      }),
+        googleAnalytics: {
+          trackingID: 'G-C9LG1XG1P1',
+          anonymizeIP: true,
+        },
+      },
     ],
   ],
   themes: ['@docusaurus/theme-live-codeblock'],
