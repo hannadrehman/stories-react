@@ -13,7 +13,7 @@ export function Video(props: IStoryComponentProps) {
   const [isMuted, setIsMuted] = useState(
     WINDOW?.localStorage?.getItem(key) === 'true',
   );
-  const [showLoader, setShowLoader] = useState(true);
+  const [showLoader, setShowLoader] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   function setMute(value: boolean) {
@@ -23,6 +23,7 @@ export function Video(props: IStoryComponentProps) {
 
   useEffect(() => {
     props.onPause();
+    setShowLoader(true);
   }, []);
 
   useEffect(() => {
@@ -51,6 +52,7 @@ export function Video(props: IStoryComponentProps) {
       console.log('dont show loader');
     }, 4);
   }
+  console.log({showLoader})
   return (
     <Fragment>
       <video
