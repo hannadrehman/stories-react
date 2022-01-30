@@ -11,8 +11,7 @@
     "build:docs": "cd ./packages/documentation/ && yarn build && yarn mv",
     "test": "yarn test",
     "lint": "eslint . --ext .ts",
-    "install": "yarn install --frozen-lockfile",
-    "npm:publish": "cd ./packages/stories/ && npm publish"
+    "install": "yarn install --frozen-lockfile"
   },
   "keywords": [
     "reactjs",
