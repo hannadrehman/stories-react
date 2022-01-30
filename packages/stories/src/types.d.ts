@@ -11,6 +11,7 @@ interface IStoryObject {
 
 interface IStoryIndexedObject extends IStoryObject {
   index: number;
+  calculatedDuration: number;
 }
 
 export interface IStoryProps {

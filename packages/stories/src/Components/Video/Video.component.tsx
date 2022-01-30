@@ -35,9 +35,6 @@ export function Video(props: IStoryComponentProps) {
       return;
     }
     videoRef.current.play().catch(() => {
-      if (videoRef.current?.paused) {
-        return;
-      }
       setMute(true);
       videoRef.current?.play();
     });
