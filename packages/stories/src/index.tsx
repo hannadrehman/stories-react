@@ -19,16 +19,26 @@ export default function Stories({
   defaultDuration = 10000,
 }: IStoryProps): JSX.Element {
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
-    return stories.map((story: IStoryObject, index: number) => ({
-      ...story,
-      index,
-    }));
+    return stories.map((story: IStoryObject, index: number) => {
+      /*
+       * adding some buffer time to duration to have distinct duration for each story.
+       * this is required inside the timeout hook.
+       * otherwise the effect is not getting called which resets the delay
+       * after each story
+       */
+      const calculatedDuration =
+        (story.duration || defaultDuration) + Number(Math.random().toFixed(2));
+      return {
+        ...story,
+        index,
+        calculatedDuration,
+      };
+    });
   }, [stories]);
 
   const [selectedStory, setSelectedStory] = useState<IStoryIndexedObject>(
     storiesWithIndex[currentIndex],
   );
-
   const firstStoryIndex = 0;
   const lastStoryIndex = stories.length - 1;
   const [isPaused, setIsPaused] = useState<boolean>(false);
@@ -67,10 +77,9 @@ export default function Stories({
     () => {
       handleNextClick();
     },
-    selectedStory.duration || defaultDuration,
+    selectedStory.calculatedDuration,
     isPaused,
   );
-
   const contextValue: IStoryContext = {
     stories: storiesWithIndex,
     width,
