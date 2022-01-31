@@ -16,15 +16,7 @@ const config = {
   organizationName: 'hannadrehman', // Usually your GitHub org/user name.
   projectName: 'stories-react', // Usually your repo name.
   deploymentBranch: 'gh-pages',
-  plugins: [
-    [
-      '@docusaurus/plugin-google-analytics',
-      {
-        trackingID: 'G-C9LG1XG1P1',
-        anonymizeIP: true,
-      },
-    ],
-  ],
+  plugins: [],
   presets: [
     [
       'classic',
@@ -41,6 +33,10 @@ const config = {
             require.resolve('./src/css/custom.css'),
             require.resolve('../stories/dist/index.css'),
           ],
+        },
+        gtag: {
+          trackingID: 'G-C9LG1XG1P1',
+          anonymizeIP: true,
         },
       },
     ],
@@ -78,9 +74,17 @@ const config = {
             label: 'Docs',
           },
           {
+            href: 'https://hannadrehman.com?ref=react-stories',
+            label: 'Blog',
+            position: 'right',
+            'aria-label': 'Hannad rehman Blog',
+          },
+
+          {
             href: 'https://github.com/hannadrehman/stories-react',
             label: 'GitHub',
             position: 'right',
+            'aria-label': 'GitHub repository',
           },
         ],
       },
