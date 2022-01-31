@@ -76,7 +76,7 @@ const config = {
           {
             href: 'https://hannadrehman.com?ref=react-stories',
             label: 'Blog',
-            position: 'right',
+            position: 'left',
             'aria-label': 'Hannad rehman Blog',
           },
 
