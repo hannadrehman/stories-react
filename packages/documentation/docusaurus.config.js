@@ -34,7 +34,7 @@ const config = {
             require.resolve('../stories/dist/index.css'),
           ],
         },
-        googleAnalytics: {
+        gtag: {
           trackingID: 'G-C9LG1XG1P1',
           anonymizeIP: true,
         },

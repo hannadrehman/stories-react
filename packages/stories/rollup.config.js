@@ -34,6 +34,7 @@ export default {
       extensions: ['.css'],
       modules: true,
       extract: true,
+      minimize: true,
       plugins: [postcssPresetEnv({ stage: 0 }), cssnano()],
     }),
     terser({
