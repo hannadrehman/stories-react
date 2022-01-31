@@ -74,9 +74,17 @@ const config = {
             label: 'Docs',
           },
           {
+            href: 'https://hannadrehman.com?ref=react-stories',
+            label: 'Blog',
+            position: 'right',
+            'aria-label': 'Hannad rehman Blog',
+          },
+
+          {
             href: 'https://github.com/hannadrehman/stories-react',
             label: 'GitHub',
             position: 'right',
+            'aria-label': 'GitHub repository',
           },
         ],
       },
