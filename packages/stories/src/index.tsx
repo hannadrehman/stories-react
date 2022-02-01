@@ -28,18 +28,13 @@ export default function Stories({
   const lastStoryIndex = stories.length - 1;
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
-  const storiesStartedCbRef = useRef<any>(onStoriesStart);
   const hasCalledEndedCb = useRef<any>(false);
   const hasCalledStartedCb = useRef<any>(false);
 
   useEffect(() => {
-    storiesStartedCbRef.current = onStoriesStart;
-  }, [onStoriesStart]);
-
-  useEffect(() => {
     if (!hasCalledStartedCb.current) {
-      storiesStartedCbRef.current();
       hasCalledStartedCb.current = true;
+      onStoriesStart();
     }
   }, [onStoriesStart]);
 

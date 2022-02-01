@@ -36,7 +36,11 @@ export default function ImagesStories() {
         marginBottom: '16px',
       }}
     >
-      <Stories width="400px" height="600px" stories={stories} />
+      <Stories
+        width="400px"
+        height="600px"
+        stories={stories}
+      />
     </div>
   );
 }
