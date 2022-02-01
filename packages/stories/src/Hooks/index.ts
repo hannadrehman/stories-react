@@ -13,7 +13,7 @@ export function useStoriesContext() {
 
 export function usePausableTimeout(
   callback: () => void,
-  delay: number,
+  delay: number | null,
   pause: boolean,
 ) {
   const savedCallback: IUseRef = useRef();

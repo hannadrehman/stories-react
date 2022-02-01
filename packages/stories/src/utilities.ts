@@ -31,7 +31,6 @@ export function transformStories(
     }
 
     lastCalculatedDuration = calculatedDuration;
-    console.log(lastCalculatedDuration);
     return {
       ...story,
       index,
