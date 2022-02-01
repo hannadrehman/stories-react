@@ -1,14 +1,11 @@
+import { useRef } from 'react';
 import { StoriesContext } from './Contexts';
 import { Actions, Progress, Story } from './Components';
-import {
-  IStoryObject,
-  IStoryProps,
-  IStoryIndexedObject,
-  IStoryContext,
-} from './types';
+import { IStoryProps, IStoryIndexedObject, IStoryContext } from './types';
 import { useEffect, useMemo, useState } from 'react';
 import * as hooks from './Hooks';
 import styles from './styles.css';
+import * as utilities from './utilities';
 
 export default function Stories({
   stories = [],
@@ -17,47 +14,64 @@ export default function Stories({
   onStoryChange = () => {},
   currentIndex = 0,
   defaultDuration = 10000,
-}: IStoryProps): JSX.Element {
+  onAllStoriesEnd = () => {},
+  onStoriesStart = () => {},
+}: IStoryProps): JSX.Element | null {
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
-    return stories.map((story: IStoryObject, index: number) => {
-      /*
-       * adding some buffer time to duration to have distinct duration for each story.
-       * this is required inside the timeout hook.
-       * otherwise the effect is not getting called which resets the delay
-       * after each story
-       */
-      const calculatedDuration =
-        (story.duration || defaultDuration) + Number(Math.random().toFixed(2));
-      return {
-        ...story,
-        index,
-        calculatedDuration,
-      };
-    });
-  }, [stories]);
+    return utilities.transformStories(stories, defaultDuration);
+  }, [stories, defaultDuration]);
 
-  const [selectedStory, setSelectedStory] = useState<IStoryIndexedObject>(
-    storiesWithIndex[currentIndex],
-  );
+  const [selectedStory, setSelectedStory] = useState<
+    IStoryIndexedObject | undefined
+  >();
   const firstStoryIndex = 0;
   const lastStoryIndex = stories.length - 1;
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
-  function handleNextClick() {
-    if (selectedStory.index < lastStoryIndex) {
-      setSelectedStory((prev) => {
-        const newIndex = prev.index + 1;
-        return storiesWithIndex[newIndex];
-      });
+  const hasCalledEndedCb = useRef<any>(false);
+  const hasCalledStartedCb = useRef<any>(false);
+
+  useEffect(() => {
+    if (!hasCalledStartedCb.current) {
+      hasCalledStartedCb.current = true;
+      onStoriesStart();
     }
+  }, [onStoriesStart]);
+
+  useEffect(() => {
+    const story = storiesWithIndex[currentIndex];
+    if (story) {
+      setSelectedStory(story);
+    }
+  }, [currentIndex, stories]);
+
+  function handleNextClick() {
+    if (!hasCalledEndedCb.current && selectedStory?.index === lastStoryIndex) {
+      onAllStoriesEnd();
+      hasCalledEndedCb.current = true;
+    }
+    if (selectedStory?.index === lastStoryIndex) {
+      return;
+    }
+    setSelectedStory((prev) => {
+      if (!prev) {
+        return storiesWithIndex[0];
+      }
+      const newIndex = prev?.index + 1;
+      return storiesWithIndex[newIndex];
+    });
   }
   function handlePrevClick() {
-    if (selectedStory.index > firstStoryIndex) {
-      setSelectedStory((prev) => {
-        const newIndex = prev.index - 1;
-        return storiesWithIndex[newIndex];
-      });
+    if (selectedStory?.index === firstStoryIndex) {
+      return;
     }
+    setSelectedStory((prev) => {
+      if (!prev) {
+        return storiesWithIndex[0];
+      }
+      const newIndex = prev?.index - 1;
+      return storiesWithIndex[newIndex];
+    });
   }
 
   function handlePause() {
@@ -77,7 +91,7 @@ export default function Stories({
     () => {
       handleNextClick();
     },
-    selectedStory.calculatedDuration,
+    selectedStory?.calculatedDuration ?? null,
     isPaused,
   );
   const contextValue: IStoryContext = {
@@ -88,6 +102,9 @@ export default function Stories({
     isPaused,
   };
 
+  if (!selectedStory) {
+    return null;
+  }
   return (
     <StoriesContext.Provider value={contextValue}>
       <div className={styles.main} style={{ width, height }}>
