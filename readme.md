@@ -4,7 +4,7 @@
 <p align="center"><a href="https://hannadrehman.github.io/stories-react/">Homepage</a>
 
 <div align="center">
-  <a href="https://www.npmjs.com/package/react-insta-stories">
+  <a href="https://www.npmjs.com/package/stories-react">
     <img alt="NPM" src="https://img.shields.io/npm/v/stories-react" />
   </a>
 </div>
