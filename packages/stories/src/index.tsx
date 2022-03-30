@@ -17,6 +17,7 @@ export default function Stories({
   onAllStoriesEnd = () => {},
   onStoriesStart = () => {},
   classNames = {},
+  pauseStoryWhenInActiveWindow = false,
 }: IStoryProps): JSX.Element | null {
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
     return utilities.transformStories(stories, defaultDuration);
@@ -95,6 +96,13 @@ export default function Stories({
     selectedStory?.calculatedDuration ?? null,
     isPaused,
   );
+
+  hooks.useWindowVisibility((isWindowInFocus) => {
+    if (pauseStoryWhenInActiveWindow) {
+      setIsPaused(!isWindowInFocus);
+    }
+  });
+
   const contextValue: IStoryContext = {
     stories: storiesWithIndex,
     width,
@@ -107,7 +115,6 @@ export default function Stories({
   if (!selectedStory) {
     return null;
   }
-  console.log(classNames);
   return (
     <StoriesContext.Provider value={contextValue}>
       <div
