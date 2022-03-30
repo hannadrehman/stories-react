@@ -37,4 +37,5 @@ export interface IStoryComponentProps {
   story: IStoryIndexedObject;
   onPause: () => void;
   onResume: () => void;
+  isPaused: boolean;
 }
