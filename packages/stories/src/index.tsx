@@ -17,7 +17,7 @@ export default function Stories({
   onAllStoriesEnd = () => {},
   onStoriesStart = () => {},
   classNames = {},
-  pauseStoryWhenInActiveWindow = false,
+  pauseStoryWhenInActiveWindow = true,
 }: IStoryProps): JSX.Element | null {
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
     return utilities.transformStories(stories, defaultDuration);
