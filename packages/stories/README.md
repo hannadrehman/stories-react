@@ -61,8 +61,7 @@ export default function ImagesStories() {
 
 ## Props
 
-
-| Property                 | Type                          | Default       | Description                                                                            |
+| Property                 | Type                          | Default       | Description                                                                             |
 | ------------------------ | ------------------------------| --------------| --------------------------------------------------------------------------------------- |
 | `stories`                | `IStoryObject[]`              | `[]`          |  An array of story objects. description of `IStoryObject` is mentioned below            |
 | `height`                 | `string`                      | `100%`        |  Height of story container                                                              |
@@ -71,7 +70,8 @@ export default function ImagesStories() {
 | `onStoriesStart`         | `function`                    | `-`           |  Callback called when first story is rendered. it get called only once,                 |
 | `onAllStoriesEnd`        | `function`                    | `-`           |  Callback called when last story gets completed. it will get called only once           |
 | `currentIndex`           | `number`                      | `-`           |  Current index of the story which should be selected first                              |
-| `defaultDuration`        | `number`                      |  `10000`      |  default duration in ms of stories if duration is not provided in the `IStoryObject`    |
+| `defaultDuration`        | `number`                      | `10000`       |  default duration in ms of stories if duration is not provided in the `IStoryObject`    |
+| `classNames`             | `IStoryClassNames`            | `{}`           |  classnames to overide different sections of a story renderer                           |
 
 ## IStoryObject
 
@@ -86,6 +86,16 @@ export default function ImagesStories() {
 | `seeMoreComponent`    | `React Component`                    | `-`          |  see more component opens after clicking see more           |
 | `onSeeMoreClick`      | `function(index:number)`             | `-`          |  Callback called when story see more is clicked             |
 
+
+## IStoryClassNames
+
+| Property              | Type                                 | Default      | Description                                                 |
+| --------------------- |--------------------------------------| -------------| ------------------------------------------------------------|
+| `main`                | `string`                             | `-`          |  classname for main container                               |
+| `progressContainer`   | `string`                             | `-`          |  classname for progress line container                      |
+| `progressBarContainer`| `string`                             | `-`          |  classname for single progress bar box container            |
+| `progressBar`         | `string`                             | `-`          |  classname for progress bar                                 |
+| `storyContainer`      | `string`                             | `-`          |  classname for story container                              |
 
 ## Custom Component Story Props
 
