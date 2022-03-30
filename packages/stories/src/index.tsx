@@ -107,7 +107,6 @@ export default function Stories({
   if (!selectedStory) {
     return null;
   }
-  console.log(classNames);
   return (
     <StoriesContext.Provider value={contextValue}>
       <div
