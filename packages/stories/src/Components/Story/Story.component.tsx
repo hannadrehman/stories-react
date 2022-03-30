@@ -7,9 +7,11 @@ import { Video } from '../Video';
 import { CustomComponent } from '../CustomComponent';
 import { SeeMore } from '../SeeMore';
 import { SeeMoreComponent } from '../SeeMoreComponent';
+import * as hooks from '../../Hooks';
 
 export function Story(props: IStoryComponentProps) {
   const [showSeeMoreComponent, setShowSeeMoreComponent] = useState(false);
+  const { classNames } = hooks.useStoriesContext();
 
   useEffect(() => {
     setShowSeeMoreComponent(false);
@@ -47,7 +49,7 @@ export function Story(props: IStoryComponentProps) {
     setShowSeeMoreComponent(false);
   }
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${classNames?.storyContainer}`}>
       {getStory()}
       {props.story.header && <div className={styles.header}>{getHeader()}</div>}
       <SeeMore onSeeMoreClick={handleSeeMore} story={props.story} />

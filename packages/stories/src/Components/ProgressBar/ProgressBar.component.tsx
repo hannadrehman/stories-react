@@ -11,7 +11,7 @@ interface IProgressBarProps {
 }
 
 export function ProgressBar(props: IProgressBarProps) {
-  const { defaultDuration } = hooks.useStoriesContext();
+  const { defaultDuration, classNames } = hooks.useStoriesContext();
   const barRef = useRef<HTMLDivElement>(null);
   const barWrapperRef = useRef<HTMLDivElement>(null);
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -66,8 +66,14 @@ export function ProgressBar(props: IProgressBarProps) {
   }, shouldAnimate);
 
   return (
-    <div className={styles.wrapper} ref={barWrapperRef}>
-      <div className={styles.bar} ref={barRef} />
+    <div
+      className={`${styles.wrapper} ${classNames?.progressBarContainer}`}
+      ref={barWrapperRef}
+    >
+      <div
+        className={`${styles.bar} ${classNames?.progressBar}`}
+        ref={barRef}
+      />
     </div>
   );
 }

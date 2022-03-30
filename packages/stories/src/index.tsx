@@ -16,6 +16,7 @@ export default function Stories({
   defaultDuration = 10000,
   onAllStoriesEnd = () => {},
   onStoriesStart = () => {},
+  classNames = {},
 }: IStoryProps): JSX.Element | null {
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
     return utilities.transformStories(stories, defaultDuration);
@@ -100,14 +101,19 @@ export default function Stories({
     height,
     defaultDuration,
     isPaused,
+    classNames,
   };
 
   if (!selectedStory) {
     return null;
   }
+  console.log(classNames);
   return (
     <StoriesContext.Provider value={contextValue}>
-      <div className={styles.main} style={{ width, height }}>
+      <div
+        className={`${styles.main} ${classNames.main}`}
+        style={{ width, height }}
+      >
         <Progress activeStoryIndex={selectedStory.index} isPaused={isPaused} />
         <Story
           key={selectedStory.index}
