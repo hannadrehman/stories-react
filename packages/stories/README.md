@@ -62,7 +62,7 @@ export default function ImagesStories() {
 ## Props
 
 
-| Property                 | Type                          | Default        | Description                                                                            |
+| Property                 | Type                          | Default       | Description                                                                            |
 | ------------------------ | ------------------------------| --------------| --------------------------------------------------------------------------------------- |
 | `stories`                | `IStoryObject[]`              | `[]`          |  An array of story objects. description of `IStoryObject` is mentioned below            |
 | `height`                 | `string`                      | `100%`        |  Height of story container                                                              |
@@ -75,7 +75,7 @@ export default function ImagesStories() {
 
 ## IStoryObject
 
-| Property              | Type                                 | Default       | Description                                                |
+| Property              | Type                                 | Default      | Description                                                |
 | --------------------- |--------------------------------------| -------------| ------------------------------------------------------------|
 | `type`                | `image , video , component`          | `-`          |  type of story to render                                    |
 | `url`                 | `string`                             | `-`          |  url of a story (image & video only)                        |
