@@ -49,7 +49,7 @@ export function Story(props: IStoryComponentProps) {
     setShowSeeMoreComponent(false);
   }
   return (
-    <div className={`${styles.wrapper} ${classNames?.storyContainer}`}>
+    <div className={`${styles.wrapper} ${classNames?.storyContainer || ''}`}>
       {getStory()}
       {props.story.header && <div className={styles.header}>{getHeader()}</div>}
       <SeeMore onSeeMoreClick={handleSeeMore} story={props.story} />

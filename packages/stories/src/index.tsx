@@ -111,7 +111,7 @@ export default function Stories({
   return (
     <StoriesContext.Provider value={contextValue}>
       <div
-        className={`${styles.main} ${classNames.main}`}
+        className={`${styles.main} ${classNames.main || ''}`}
         style={{ width, height }}
       >
         <Progress activeStoryIndex={selectedStory.index} isPaused={isPaused} />

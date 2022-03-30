@@ -68,11 +68,11 @@ export function ProgressBar(props: IProgressBarProps) {
 
   return (
     <div
-      className={`${styles.wrapper} ${classNames?.progressBarContainer}`}
+      className={`${styles.wrapper} ${classNames?.progressBarContainer || ''}`}
       ref={barWrapperRef}
     >
       <div
-        className={`${styles.bar} ${classNames?.progressBar}`}
+        className={`${styles.bar} ${classNames?.progressBar || ''}`}
         ref={barRef}
       />
     </div>

@@ -12,7 +12,7 @@ export function Progress(props: IProgressProps) {
   const { stories, classNames } = useStoriesContext();
   return (
     <div
-      className={`${styles.wrapper} ${classNames?.progressContainer}`}
+      className={`${styles.wrapper} ${classNames?.progressContainer || ''}`}
       style={{ gridTemplateColumns: `repeat(${stories.length},1fr)` }}
     >
       {stories.map((story: IStoryIndexedObject) => (
