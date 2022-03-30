@@ -8,6 +8,7 @@ export function CustomComponent(props: IStoryComponentProps) {
         pause={props.onPause}
         resume={props.onResume}
         story={props.story}
+        isPaused={props.isPaused}
       />
     </div>
   );

@@ -4,7 +4,7 @@
 <p align="center"><a href="https://hannadrehman.github.io/stories-react/">Homepage</a>
 
 <div align="center">
-  <a href="https://www.npmjs.com/package/react-insta-stories">
+  <a href="https://www.npmjs.com/package/stories-react">
     <img alt="NPM" src="https://img.shields.io/npm/v/stories-react" />
   </a>
 </div>
@@ -62,7 +62,7 @@ export default function ImagesStories() {
 ## Props
 
 
-| Property                 | Type                          | Defaul        | Description                                                                             |
+| Property                 | Type                          | Default       | Description                                                                            |
 | ------------------------ | ------------------------------| --------------| --------------------------------------------------------------------------------------- |
 | `stories`                | `IStoryObject[]`              | `[]`          |  An array of story objects. description of `IStoryObject` is mentioned below            |
 | `height`                 | `string`                      | `100%`        |  Height of story container                                                              |
@@ -75,7 +75,7 @@ export default function ImagesStories() {
 
 ## IStoryObject
 
-| Property              | Type                                 | Defaul       | Description                                                 |
+| Property              | Type                                 | Default      | Description                                                |
 | --------------------- |--------------------------------------| -------------| ------------------------------------------------------------|
 | `type`                | `image , video , component`          | `-`          |  type of story to render                                    |
 | `url`                 | `string`                             | `-`          |  url of a story (image & video only)                        |
@@ -84,5 +84,15 @@ export default function ImagesStories() {
 | `header`              | `React Component`                    | `-`          |  header of a story                                          |
 | `seeMore`             | `string , boolean , React Component` | `true`       |  See more action text                                       |
 | `seeMoreComponent`    | `React Component`                    | `-`          |  see more component opens after clicking see more           |
-| `onSeeMoreClick`      | `function(index:number)`             | `-`          |  Callback called when story see more is clicked                                                     |
+| `onSeeMoreClick`      | `function(index:number)`             | `-`          |  Callback called when story see more is clicked             |
 
+
+## Custom Component Story Props
+
+
+| Property              | Type                                 |              | Description                                                 |
+| --------------------- |--------------------------------------| -------------| ------------------------------------------------------------|
+| `pause`               | `function`                           |              |  call it to pause a story                                   |
+| `resume`              | `function`                           |              |  call it to resume a story                                  |
+| `story`               | `IStoryObject`                       |              |  current story properties                                   |
+| `isPaused`            | `boolean`                            |              |  state of a story                                           |

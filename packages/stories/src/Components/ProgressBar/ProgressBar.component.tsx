@@ -20,7 +20,7 @@ export function ProgressBar(props: IProgressBarProps) {
 
   //set animations
   useEffect(() => {
-    if (props.isPaused) {
+    if (props.isPaused || !props.isActive) {
       setShouldAnimate(false);
       return;
     }
@@ -32,12 +32,6 @@ export function ProgressBar(props: IProgressBarProps) {
   }, [props.isActive, props.isPaused]);
 
   useEffect(() => {
-    if (props.isActive && barRef.current) {
-      barRef.current.style.width = '0px';
-    }
-  }, [props.isActive]);
-
-  useEffect(() => {
     if (!barRef.current) {
       return;
     }
@@ -45,10 +39,7 @@ export function ProgressBar(props: IProgressBarProps) {
       barRef.current.style.width = `${barWrapperRef?.current?.offsetWidth}px`;
       return;
     }
-    if (!props.isActive) {
-      barRef.current.style.width = '0px';
-      return;
-    }
+    barRef.current.style.width = '0px';
   }, [props.hasStoryPassed, props.isActive]);
 
   hooks.useAnimationFrame((time: number) => {
