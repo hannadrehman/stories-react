@@ -114,6 +114,7 @@ export default function Stories({
           onPause={handlePause}
           onResume={handleResume}
           story={selectedStory}
+          isPaused={isPaused}
         />
         <Actions
           onNextClick={handleNextClick}
