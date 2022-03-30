@@ -14,6 +14,14 @@ interface IStoryIndexedObject extends IStoryObject {
   calculatedDuration: number;
 }
 
+interface IStoryClassNames {
+  main?: string;
+  progressContainer?: string;
+  progressBarContainer?: string;
+  progressBar?: string;
+  storyContainer?: string;
+}
+
 export interface IStoryProps {
   stories: IStoryObject[];
   height?: '100%';
@@ -23,6 +31,7 @@ export interface IStoryProps {
   defaultDuration?: number;
   onStoriesStart?: () => void;
   onAllStoriesEnd?: () => void;
+  classNames?: IStoryClassNames;
 }
 
 export interface IStoryContext {
@@ -31,6 +40,7 @@ export interface IStoryContext {
   width?: '100%';
   defaultDuration: number;
   isPaused: boolean;
+  classNames?: IStoryClassNames;
 }
 
 export interface IStoryComponentProps {
