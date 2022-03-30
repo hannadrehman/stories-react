@@ -125,10 +125,15 @@ function ComponentApi(props) {
         Resume Story
       </button>
       <h5>Make Sure button zIndex is >= 2</h5>
-
-      <pre style={{ marginTop: '16px', padding: '16px' }}>
-        {JSON.stringify(props, null, 2)}
-      </pre>
+      <div
+        style={{
+          marginTop: '16px',
+          padding: '16px',
+          fontSize: '12px',
+        }}
+      >
+        {JSON.stringify(props, null, 4)}
+      </div>
       <h6>Story object passed in props </h6>
     </div>
   );
