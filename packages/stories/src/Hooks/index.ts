@@ -90,3 +90,26 @@ export function useAnimationFrame(
     };
   }, [start]);
 }
+
+export function useWindowVisibility(callback: (isVisible: boolean) => void) {
+  const callBackRef = useRef(callback);
+  useEffect(() => {
+    callBackRef.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function handleActive() {
+      callBackRef.current(true);
+    }
+    function handleInActive() {
+      callBackRef.current(false);
+    }
+    window.addEventListener('focus', handleActive);
+    window.addEventListener('blur', handleInActive);
+
+    return () => {
+      window.removeEventListener('focus', handleActive);
+      window.removeEventListener('blur', handleInActive);
+    };
+  }, []);
+}

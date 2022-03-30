@@ -7,17 +7,18 @@ sidebar_position: 3
 
 ## Props
 
-| Property                 | Type                          | Default       | Description                                                                             |
-| ------------------------ | ------------------------------| --------------| --------------------------------------------------------------------------------------- |
-| `stories`                | `IStoryObject[]`              | `[]`          |  An array of story objects. description of `IStoryObject` is mentioned below            |
-| `height`                 | `string`                      | `100%`        |  Height of story container                                                              |
-| `width`                  | `string`                      | `100%`        |  Width of story container                                                               |
-| `onStoryChange`          | `function(index:number)`      | `-`           |  Callback called when story changes                                                     |
-| `onStoriesStart`         | `function`                    | `-`           |  Callback called when first story is rendered. it get called only once,                 |
-| `onAllStoriesEnd`        | `function`                    | `-`           |  Callback called when last story gets completed. it will get called only once           |
-| `currentIndex`           | `number`                      | `-`           |  Current index of the story which should be selected first                              |
-| `defaultDuration`        | `number`                      | `10000`       |  default duration in ms of stories if duration is not provided in the `IStoryObject`    |
-| `classNames`             | `IStoryClassNames`            | `{}`           |  classnames to overide different sections of a story renderer                           |
+| Property                      | Type                          | Default       | Description                                                                             |
+| ------------------------------| ------------------------------| --------------| --------------------------------------------------------------------------------------- |
+| `stories`                     | `IStoryObject[]`              | `[]`          |  An array of story objects. description of `IStoryObject` is mentioned below            |
+| `height`                      | `string`                      | `100%`        |  Height of story container                                                              |
+| `width`                       | `string`                      | `100%`        |  Width of story container                                                               |
+| `onStoryChange`               | `function(index:number)`      | `-`           |  Callback called when story changes                                                     |
+| `onStoriesStart`              | `function`                    | `-`           |  Callback called when first story is rendered. it get called only once,                 |
+| `onAllStoriesEnd`             | `function`                    | `-`           |  Callback called when last story gets completed. it will get called only once           |
+| `currentIndex`                | `number`                      | `-`           |  Current index of the story which should be selected first                              |
+| `defaultDuration`             | `number`                      | `10000`       |  default duration in ms of stories if duration is not provided in the `IStoryObject`    |
+| `classNames`                  | `IStoryClassNames`            | `{}`          |  classnames to overide different sections of a story renderer                           |
+| `pauseStoryWhenInActiveWindow`| `boolean`                     | `true`        |  pauses story when window goes out of focus (user changes tab/minimizes browser etc     |
 
 ## IStoryObject
 

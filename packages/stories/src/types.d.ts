@@ -32,6 +32,7 @@ export interface IStoryProps {
   onStoriesStart?: () => void;
   onAllStoriesEnd?: () => void;
   classNames?: IStoryClassNames;
+  pauseStoryWhenInActiveWindow?: boolean;
 }
 
 export interface IStoryContext {
