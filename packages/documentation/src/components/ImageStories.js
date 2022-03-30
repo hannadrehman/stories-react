@@ -1,6 +1,7 @@
 import React from 'react';
 import Stories from 'stories-react';
 import 'stories-react/dist/index.css';
+import './styles.css';
 
 export default function ImagesStories() {
   const stories = [
@@ -40,6 +41,13 @@ export default function ImagesStories() {
         width="400px"
         height="600px"
         stories={stories}
+        classNames={{
+          main: 'custom-container',
+          progressContainer: 'custom-progress-container',
+          progressBarContainer: 'custom-progress-bar-container',
+          progressBar: 'custon-progress-bar',
+          storyContainer: 'custom-story-container',
+        }}
       />
     </div>
   );
