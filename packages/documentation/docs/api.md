@@ -33,3 +33,12 @@ sidebar_position: 3
 | `onSeeMoreClick`      | `function(index:number)`             | `-`          |  Callback called when story see more is clicked                                                     |
 
 
+## Custom Component Story Props
+
+
+| Property              | Type                                 |              | Description                                                 |
+| --------------------- |--------------------------------------| -------------| ------------------------------------------------------------|
+| `pause`               | `function`                           |              |  call it to pause a story                                   |
+| `resume`              | `function`                           |              |  call it to resume a story                                  |
+| `story`               | `IStoryObject`                       |              |  current story properties                                   |
+| `isPaused`            | `boolean`                            |              |  state of a story                                           |
