@@ -10,13 +10,14 @@ interface IProgressBarProps {
   isPaused: boolean;
 }
 
+let barWidth = 0; // declaring it here to avoid variable creating in a loop. this will improve memory utilization.
+let step = 0.1;
+
 export function ProgressBar(props: IProgressBarProps) {
   const { defaultDuration, classNames } = hooks.useStoriesContext();
   const barRef = useRef<HTMLDivElement>(null);
   const barWrapperRef = useRef<HTMLDivElement>(null);
   const [shouldAnimate, setShouldAnimate] = useState(false);
-  let barWidth = 0; // declaring it here to avoid variable creating in a loop. this will improve memory utilization.
-  let step = 0.1;
 
   //set animations
   useEffect(() => {
