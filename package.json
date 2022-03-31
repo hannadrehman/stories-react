@@ -1,4 +1,5 @@
 {
+  "name": "ghpages",
   "private": true,
   "workspaces": [
     "packages/*"
