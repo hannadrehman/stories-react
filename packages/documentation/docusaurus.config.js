@@ -49,16 +49,6 @@ const config = {
         defaultMode: 'light',
         disableSwitch: false,
         respectPrefersColorScheme: false,
-        switchConfig: {
-          darkIcon: '🌙',
-          darkIconStyle: {
-            marginLeft: '2px',
-          },
-          lightIcon: '🌞',
-          lightIconStyle: {
-            marginLeft: '1px',
-          },
-        },
       },
       navbar: {
         title: 'React Stories',
