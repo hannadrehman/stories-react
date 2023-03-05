@@ -1,15 +1,14 @@
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import typescript from 'rollup-plugin-typescript2';
-import { terser } from 'rollup-plugin-terser';
-import postcss from 'rollup-plugin-postcss';
-import postcssPresetEnv from 'postcss-preset-env';
-import cssnano from 'cssnano';
-
+const peerDepsExternal = require('rollup-plugin-peer-deps-external');
+const resolve = require('@rollup/plugin-node-resolve');
+const commonjs = require('@rollup/plugin-commonjs');
+const typescript = require('rollup-plugin-typescript2');
+const { terser } = require('rollup-plugin-terser');
+const postcss = require('rollup-plugin-postcss');
+const postcssPresetEnv = require('postcss-preset-env');
+const cssnano = require('cssnano');
 const packageJson = require('./package.json');
 
-export default {
+module.exports = {
   input: 'src/index.tsx',
   output: [
     {
