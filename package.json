@@ -3,7 +3,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "instagram style stories in react js",
   "scripts": {
     "start:docs": "cd ./packages/documentation/ && yarn start",
