@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 import * as hooks from './Hooks';
 import styles from './styles.css';
 import * as utilities from './utilities';
+import { preloadImage, preloadVideo } from '@remotion/preload';
 
 export default function Stories({
   stories = [],
@@ -18,6 +19,7 @@ export default function Stories({
   onStoriesStart = () => {},
   classNames = {},
   pauseStoryWhenInActiveWindow = true,
+  preloadNextStory = false,
 }: IStoryProps): JSX.Element | null {
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
     return utilities.transformStories(stories, defaultDuration);
@@ -40,10 +42,29 @@ export default function Stories({
     }
   }, [onStoriesStart]);
 
+  const preloadStory = (
+    story:
+      | { type: string; duration: number; url: string }
+      | { type: string; url: string; duration?: undefined },
+  ) => {
+    if (story.type == 'image') {
+      preloadImage(story.url);
+    } else if (story.type == 'video') {
+      preloadVideo(story.url);
+    }
+  };
+
   useEffect(() => {
     const story = storiesWithIndex[currentIndex];
     if (story) {
       setSelectedStory(story);
+
+      if (preloadNextStory) {
+        const nextIndex = currentIndex + 1;
+        if (nextIndex < stories.length - 1) {
+          preloadStory(storiesWithIndex[nextIndex]);
+        }
+      }
     }
   }, [currentIndex, stories]);
 
@@ -62,6 +83,13 @@ export default function Stories({
       const newIndex = prev?.index + 1;
       return storiesWithIndex[newIndex];
     });
+
+    if (preloadNextStory) {
+      const nextIndex = (selectedStory || { index: 0 }).index + 2;
+      if (nextIndex < stories.length - 1) {
+        preloadStory(storiesWithIndex[nextIndex]);
+      }
+    }
   }
   function handlePrevClick() {
     if (selectedStory?.index === firstStoryIndex) {
@@ -110,6 +138,7 @@ export default function Stories({
     defaultDuration,
     isPaused,
     classNames,
+    preloadNextStory,
   };
 
   if (!selectedStory) {

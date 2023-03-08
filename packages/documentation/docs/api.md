@@ -16,9 +16,10 @@ sidebar_position: 3
 | `onStoriesStart`              | `function`                    | `-`           |  Callback called when first story is rendered. it get called only once,                 |
 | `onAllStoriesEnd`             | `function`                    | `-`           |  Callback called when last story gets completed. it will get called only once           |
 | `currentIndex`                | `number`                      | `-`           |  Current index of the story which should be selected first                              |
-| `defaultDuration`             | `number`                      | `10000`       |  default duration in ms of stories if duration is not provided in the `IStoryObject`    |
-| `classNames`                  | `IStoryClassNames`            | `{}`          |  classnames to overide different sections of a story renderer                           |
-| `pauseStoryWhenInActiveWindow`| `boolean`                     | `true`        |  pauses story when window goes out of focus (user changes tab/minimizes browser etc     |
+| `defaultDuration`             | `number`                      | `10000`       |  Default duration in ms of stories if duration is not provided in the `IStoryObject`    |
+| `classNames`                  | `IStoryClassNames`            | `{}`          |  Class names to overide different sections of a story renderer                           |
+| `pauseStoryWhenInActiveWindow`| `boolean`                     | `true`        |  Pauses story when window goes out of focus (user changes tab/minimizes browser etc     |
+| `preloadNextStory`| `boolean`                     | `false`        |  Preloads next story using `@remotion/preload`  **(Applies only for image and video stories)**    |
 
 ## IStoryObject
 
