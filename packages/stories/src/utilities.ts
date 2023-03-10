@@ -1,4 +1,5 @@
 import { IStoryObject, IStoryIndexedObject } from './types';
+import { preloadImage, preloadVideo } from '@remotion/preload';
 
 function getTimeDelta(precesion = 4): number {
   return Number(Math.random().toFixed(precesion));
@@ -37,4 +38,15 @@ export function transformStories(
       calculatedDuration,
     };
   });
+}
+
+/**
+ * Preloads stories of type "image" and "video"
+ * @param type 
+ * @param url 
+ */
+export function preloadStory(type: string, url:string) {
+  if (type === 'image')
+     preloadImage(url);
+  else if (type === 'video') preloadVideo(url);
 }

@@ -6,7 +6,6 @@ import { useEffect, useMemo, useState } from 'react';
 import * as hooks from './Hooks';
 import styles from './styles.css';
 import * as utilities from './utilities';
-import { preloadImage, preloadVideo } from '@remotion/preload';
 
 export default function Stories({
   stories = [],
@@ -35,6 +34,25 @@ export default function Stories({
   const hasCalledEndedCb = useRef<any>(false);
   const hasCalledStartedCb = useRef<any>(false);
 
+  // Preload stories  
+  const preloadedStoriesIndexs: number[] = useMemo(() => [], []);
+  const preloadStory = (index: number) => {
+    if (!preloadNextStory) return;
+
+    if (
+      index >= storiesWithIndex.length ||
+      preloadedStoriesIndexs.indexOf(index) >= 0
+    )
+      return;
+
+    utilities.preloadStory(
+      storiesWithIndex[index].type,
+      storiesWithIndex[index].url,
+    );
+
+    preloadedStoriesIndexs.push(index);
+  };
+
   useEffect(() => {
     if (!hasCalledStartedCb.current) {
       hasCalledStartedCb.current = true;
@@ -42,30 +60,14 @@ export default function Stories({
     }
   }, [onStoriesStart]);
 
-  const preloadStory = (
-    story:
-      | { type: string; duration: number; url: string }
-      | { type: string; url: string; duration?: undefined },
-  ) => {
-    if (story.type == 'image') {
-      preloadImage(story.url);
-    } else if (story.type == 'video') {
-      preloadVideo(story.url);
-    }
-  };
-
   useEffect(() => {
     const story = storiesWithIndex[currentIndex];
-    if (story) {
-      setSelectedStory(story);
 
-      if (preloadNextStory) {
-        const nextIndex = currentIndex + 1;
-        if (nextIndex < stories.length - 1) {
-          preloadStory(storiesWithIndex[nextIndex]);
-        }
-      }
-    }
+    if (!story) return;
+
+    setSelectedStory(story);
+
+    preloadStory(currentIndex + 1)
   }, [currentIndex, stories]);
 
   function handleNextClick() {
@@ -83,19 +85,13 @@ export default function Stories({
       const newIndex = prev?.index + 1;
       return storiesWithIndex[newIndex];
     });
-
-    if (preloadNextStory) {
-      const nextIndex = (selectedStory || { index: 0 }).index + 2;
-      if (nextIndex < stories.length - 1) {
-        preloadStory(storiesWithIndex[nextIndex]);
-      }
-    }
   }
   function handlePrevClick() {
     if (selectedStory?.index === firstStoryIndex) {
       return;
     }
     setSelectedStory((prev) => {
+      
       if (!prev) {
         return storiesWithIndex[0];
       }
@@ -112,9 +108,11 @@ export default function Stories({
   }
 
   useEffect(() => {
-    if (selectedStory) {
-      onStoryChange(selectedStory.index);
-    }
+    if (!selectedStory) return;
+
+    onStoryChange(selectedStory.index);
+
+    preloadStory(selectedStory.index + 1);
   }, [selectedStory]);
 
   hooks.usePausableTimeout(
