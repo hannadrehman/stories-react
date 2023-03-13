@@ -46,7 +46,12 @@ export function transformStories(
  * @param url 
  */
 export function preloadStory(type: string, url:string) {
-  if (type === 'image')
-     preloadImage(url);
-  else if (type === 'video') preloadVideo(url);
+  if (type === 'component') {
+    return;
+  }
+  if (type === 'image') {
+    preloadImage(url);
+    return;
+  }
+  preloadVideo(url);
 }
