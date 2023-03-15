@@ -35,22 +35,24 @@ export default function Stories({
   const hasCalledStartedCb = useRef<any>(false);
 
   // Preload stories  
-  const preloadedStoriesIndexs: number[] = useMemo(() => [], []);
+  const preloadedStoriesUrlsRef = useRef<string[]>([]);
   const preloadStory = (index: number) => {
     if (!preloadNextStory) return;
 
     if (
       index >= storiesWithIndex.length ||
-      preloadedStoriesIndexs.indexOf(index) >= 0
+      preloadedStoriesUrlsRef.current.indexOf(storiesWithIndex[index].url) >= 0
     )
       return;
+    
+    console.log(storiesWithIndex[index].url);
 
-    utilities.preloadStory(
+    if (utilities.preloadStory(
       storiesWithIndex[index].type,
       storiesWithIndex[index].url,
-    );
-
-    preloadedStoriesIndexs.push(index);
+    )) {
+      preloadedStoriesUrlsRef.current.push(storiesWithIndex[index].url);
+    }
   };
 
   useEffect(() => {
@@ -67,7 +69,7 @@ export default function Stories({
 
     setSelectedStory(story);
 
-    preloadStory(currentIndex + 1)
+    preloadStory(currentIndex + 1);
   }, [currentIndex, stories]);
 
   function handleNextClick() {

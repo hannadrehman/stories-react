@@ -45,13 +45,15 @@ export function transformStories(
  * @param type 
  * @param url 
  */
-export function preloadStory(type: string, url:string) {
+export function preloadStory(type: string, url:string): boolean {
   if (type === 'component') {
-    return;
+    return false;
   }
   if (type === 'image') {
     preloadImage(url);
-    return;
   }
-  preloadVideo(url);
+  else {
+    preloadVideo(url);
+  }
+  return true;
 }
