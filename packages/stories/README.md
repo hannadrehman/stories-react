@@ -94,6 +94,7 @@ export default function ImagesStories() {
 | `defaultDuration`              | `number`                 | `10000` | default duration in ms of stories if duration is not provided in the `IStoryObject` |
 | `classNames`                   | `IStoryClassNames`       | `{}`    | classnames to overide different sections of a story renderer                        |
 | `pauseStoryWhenInActiveWindow` | `boolean`                | `true`  | pauses story when window goes out of focus (user changes tab/minimizes browser etc  |
+| `preloadNextStory`             | `boolean`                | `false` | Preloads next story using `@remotion/preload`  **(Applies only for image and video stories)**  |
 
 ## IStoryObject
 

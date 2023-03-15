@@ -7,4 +7,4 @@
 
 You can start making changes and see it in action in the documentation site.
 
-Note: if you chnage the `types.d.ts` file in the `stories` package, you need to re run `npm run build:stories`.
+Note: if you change the `types.d.ts` file in the `stories` package, you need to re run `npm run build:stories`.
