@@ -18,6 +18,7 @@ export default function Stories({
   onStoriesStart = () => {},
   classNames = {},
   pauseStoryWhenInActiveWindow = true,
+  preloadNextStory = false,
 }: IStoryProps): JSX.Element | null {
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
     return utilities.transformStories(stories, defaultDuration);
@@ -33,6 +34,25 @@ export default function Stories({
   const hasCalledEndedCb = useRef<any>(false);
   const hasCalledStartedCb = useRef<any>(false);
 
+  // Preload stories  
+  const preloadedStoriesUrlsRef = useRef<string[]>([]);
+  const preloadStory = (index: number) => {
+    if (!preloadNextStory) return;
+
+    if (
+      index >= storiesWithIndex.length ||
+      preloadedStoriesUrlsRef.current.indexOf(storiesWithIndex[index].url) >= 0
+    )
+      return;
+
+    if (utilities.preloadStory(
+      storiesWithIndex[index].type,
+      storiesWithIndex[index].url,
+    )) {
+      preloadedStoriesUrlsRef.current.push(storiesWithIndex[index].url);
+    }
+  };
+
   useEffect(() => {
     if (!hasCalledStartedCb.current) {
       hasCalledStartedCb.current = true;
@@ -41,10 +61,14 @@ export default function Stories({
   }, [onStoriesStart]);
 
   useEffect(() => {
+    console.log('currentIndex change', currentIndex);
     const story = storiesWithIndex[currentIndex];
-    if (story) {
-      setSelectedStory(story);
-    }
+
+    if (!story) return;
+
+    setSelectedStory(story);
+
+    preloadStory(currentIndex + 1);
   }, [currentIndex, stories]);
 
   function handleNextClick() {
@@ -68,6 +92,7 @@ export default function Stories({
       return;
     }
     setSelectedStory((prev) => {
+      
       if (!prev) {
         return storiesWithIndex[0];
       }
@@ -84,9 +109,12 @@ export default function Stories({
   }
 
   useEffect(() => {
-    if (selectedStory) {
-      onStoryChange(selectedStory.index);
-    }
+    console.log('selectedStory change', { sel: selectedStory ?? "", index: currentIndex });
+    if (!selectedStory) return;
+
+    onStoryChange(selectedStory.index);
+
+    preloadStory(selectedStory.index + 1);
   }, [selectedStory]);
 
   hooks.usePausableTimeout(
@@ -110,6 +138,7 @@ export default function Stories({
     defaultDuration,
     isPaused,
     classNames,
+    preloadNextStory,
   };
 
   if (!selectedStory) {
