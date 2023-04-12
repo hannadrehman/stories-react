@@ -106,7 +106,7 @@ export default function Stories({
     setIsPaused(false);
   }
 
-  // Enters when 'selectedStory' changed
+  // Enters when 'selectedStory' changes
   useEffect(() => {
     if (!selectedStory) return;
 
