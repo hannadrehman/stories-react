@@ -34,7 +34,7 @@ export default function Stories({
   const hasCalledEndedCb = useRef<any>(false);
   const hasCalledStartedCb = useRef<any>(false);
 
-  // Preload stories  
+  // Preload stories
   const preloadedStoriesUrlsRef = useRef<string[]>([]);
   const preloadStory = (index: number) => {
     if (!preloadNextStory) return;
@@ -46,9 +46,9 @@ export default function Stories({
       return;
 
     if (utilities.preloadStory(
-      storiesWithIndex[index].type,
-      storiesWithIndex[index].url,
-    )) {
+        storiesWithIndex[index].type,
+        storiesWithIndex[index].url,
+      )) {
       preloadedStoriesUrlsRef.current.push(storiesWithIndex[index].url);
     }
   };
@@ -60,15 +60,14 @@ export default function Stories({
     }
   }, [onStoriesStart]);
 
+  // Enters when 'currentIndex' and 'stories' are setted
   useEffect(() => {
-    console.log('currentIndex change', currentIndex);
     const story = storiesWithIndex[currentIndex];
 
     if (!story) return;
 
     setSelectedStory(story);
 
-    preloadStory(currentIndex + 1);
   }, [currentIndex, stories]);
 
   function handleNextClick() {
@@ -92,7 +91,6 @@ export default function Stories({
       return;
     }
     setSelectedStory((prev) => {
-      
       if (!prev) {
         return storiesWithIndex[0];
       }
@@ -108,8 +106,8 @@ export default function Stories({
     setIsPaused(false);
   }
 
+  // Enters when 'selectedStory' changed
   useEffect(() => {
-    console.log('selectedStory change', { sel: selectedStory ?? "", index: currentIndex });
     if (!selectedStory) return;
 
     onStoryChange(selectedStory.index);
