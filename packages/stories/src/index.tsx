@@ -18,6 +18,7 @@ export default function Stories({
   onStoriesStart = () => {},
   classNames = {},
   pauseStoryWhenInActiveWindow = true,
+  preloadNextStory = false,
 }: IStoryProps): JSX.Element | null {
   const storiesWithIndex: IStoryIndexedObject[] = useMemo(() => {
     return utilities.transformStories(stories, defaultDuration);
@@ -33,6 +34,25 @@ export default function Stories({
   const hasCalledEndedCb = useRef<any>(false);
   const hasCalledStartedCb = useRef<any>(false);
 
+  // Preload stories
+  const preloadedStoriesUrlsRef = useRef<string[]>([]);
+  const preloadStory = (index: number) => {
+    if (!preloadNextStory) return;
+
+    if (
+      index >= storiesWithIndex.length ||
+      preloadedStoriesUrlsRef.current.indexOf(storiesWithIndex[index].url) >= 0
+    )
+      return;
+
+    if (utilities.preloadStory(
+        storiesWithIndex[index].type,
+        storiesWithIndex[index].url,
+      )) {
+      preloadedStoriesUrlsRef.current.push(storiesWithIndex[index].url);
+    }
+  };
+
   useEffect(() => {
     if (!hasCalledStartedCb.current) {
       hasCalledStartedCb.current = true;
@@ -40,11 +60,14 @@ export default function Stories({
     }
   }, [onStoriesStart]);
 
+  // Enters when 'currentIndex' and 'stories' are setted
   useEffect(() => {
     const story = storiesWithIndex[currentIndex];
-    if (story) {
-      setSelectedStory(story);
-    }
+
+    if (!story) return;
+
+    setSelectedStory(story);
+
   }, [currentIndex, stories]);
 
   function handleNextClick() {
@@ -83,10 +106,13 @@ export default function Stories({
     setIsPaused(false);
   }
 
+  // Enters when 'selectedStory' changes
   useEffect(() => {
-    if (selectedStory) {
-      onStoryChange(selectedStory.index);
-    }
+    if (!selectedStory) return;
+
+    onStoryChange(selectedStory.index);
+
+    preloadStory(selectedStory.index + 1);
   }, [selectedStory]);
 
   hooks.usePausableTimeout(
@@ -110,6 +136,7 @@ export default function Stories({
     defaultDuration,
     isPaused,
     classNames,
+    preloadNextStory,
   };
 
   if (!selectedStory) {
