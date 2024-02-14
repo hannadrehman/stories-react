@@ -12,6 +12,7 @@ sidebar_position: 3
 | `stories`                     | `IStoryObject[]`              | `[]`          |  An array of story objects. description of `IStoryObject` is mentioned below            |
 | `height`                      | `string`                      | `100%`        |  Height of story container                                                              |
 | `width`                       | `string`                      | `100%`        |  Width of story container                                                               |
+| `loop`                        | `boolean`                     | `false`       |  The last story loop to the first one and restart the stories                           |
 | `onStoryChange`               | `function(index:number)`      | `-`           |  Callback called when story changes                                                     |
 | `onStoriesStart`              | `function`                    | `-`           |  Callback called when first story is rendered. it get called only once,                 |
 | `onAllStoriesEnd`             | `function`                    | `-`           |  Callback called when last story gets completed. it will get called only once           |

@@ -14,6 +14,7 @@ export default function Stories({
   onStoryChange = () => {},
   currentIndex = 0,
   defaultDuration = 10000,
+  loop = false,
   onAllStoriesEnd = () => {},
   onStoriesStart = () => {},
   classNames = {},
@@ -48,6 +49,10 @@ export default function Stories({
   }, [currentIndex, stories]);
 
   function handleNextClick() {
+    if (loop && selectedStory?.index === lastStoryIndex) {
+      setSelectedStory(storiesWithIndex[firstStoryIndex]);
+      return;
+    }
     if (!hasCalledEndedCb.current && selectedStory?.index === lastStoryIndex) {
       onAllStoriesEnd();
       hasCalledEndedCb.current = true;
