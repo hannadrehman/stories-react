@@ -30,11 +30,12 @@ export function Video(props: IStoryComponentProps) {
     if (!videoRef.current) {
       return;
     }
-    if (isPaused && !videoRef.current.paused) {
-      videoRef.current.pause();
-      return;
-    }
-    videoRef.current.play().catch(() => {
+    
+    videoRef.current.play().then(() => {
+      if (isPaused && videoRef.current) {
+        videoRef.current.pause();
+      }
+    }).catch(() => {
       setMute(true);
       videoRef.current?.play();
     });
