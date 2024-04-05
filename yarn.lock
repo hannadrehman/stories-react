@@ -2637,6 +2637,11 @@
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.21.tgz"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
+"@remotion/preload@^3.3.63":
+  version "3.3.63"
+  resolved "https://registry.yarnpkg.com/@remotion/preload/-/preload-3.3.63.tgz#7899893291b86c5aa78034209f7ecad68a4d732f"
+  integrity sha512-0dL98je6hnp6X287F2WNCzi4F3kgD+x3eOnmIeDS29/Cko2BFscME93NLjLBdj3N6onGAWeddJWq6xadFhg6Fw==
+
 "@rollup/plugin-commonjs@^24.0.1":
   version "24.0.1"
   resolved "https://registry.npmjs.org/@rollup/plugin-commonjs/-/plugin-commonjs-24.0.1.tgz"

@@ -34,6 +34,7 @@ export interface IStoryProps {
   onAllStoriesEnd?: () => void;
   classNames?: IStoryClassNames;
   pauseStoryWhenInActiveWindow?: boolean;
+  preloadNextStory?:boolean;
 }
 
 export interface IStoryContext {
@@ -43,6 +44,7 @@ export interface IStoryContext {
   defaultDuration: number;
   isPaused: boolean;
   classNames?: IStoryClassNames;
+  preloadNextStory?: boolean;
 }
 
 export interface IStoryComponentProps {

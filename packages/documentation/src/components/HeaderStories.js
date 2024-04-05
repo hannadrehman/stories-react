@@ -10,7 +10,7 @@ function Head(props) {
         display: 'flex',
         alignItems: 'center',
         alignContent: 'center',
-        'background-color': '#9d9d9d3b',
+        backgroundColor: '#9d9d9d3b',
         width: '150px',
       }}
     >
@@ -19,10 +19,10 @@ function Head(props) {
           src={props.url}
           alt="Avatar"
           style={{
-            'vertical-align': 'middle',
+            verticalAlign: 'middle',
             width: '40px',
             height: '40px',
-            'border-radius': '50%',
+            borderRadius: '50%',
           }}
         />
       </div>
