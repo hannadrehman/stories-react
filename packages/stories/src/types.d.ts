@@ -29,7 +29,6 @@ export interface IStoryProps {
   onStoryChange: (currentIndex: number) => void;
   currentIndex?: number;
   defaultDuration?: number;
-  loop?: boolean;
   onStoriesStart?: () => void;
   onAllStoriesEnd?: () => void;
   classNames?: IStoryClassNames;
