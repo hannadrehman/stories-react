@@ -11,6 +11,9 @@ interface IActionsProps {
 
 type IActionEvent = React.MouseEvent | React.TouchEvent;
 
+const DELAY_FOR_INTERACTIONS = 100;
+const DELAY_FOR_PAUSE = DELAY_FOR_INTERACTIONS + 200;
+
 export function Actions({
   onNextClick,
   onPrevClick,
@@ -21,6 +24,7 @@ export function Actions({
   //adding pause timer because we want to debouce pause interaction
   //because mouse down is called with mouse up immediately
   const pauseTimerRef = useRef<any>(null);
+  const interactionsTimerRef = useRef<any>(null);
 
   function handlePause(event: IActionEvent) {
     event.stopPropagation();
@@ -31,26 +35,33 @@ export function Actions({
     pauseTimerRef.current = setTimeout(() => {
       onPause();
       setIsStoryPaused(true);
-    }, 200);
+
+      pauseTimerRef.current = null;
+    }, DELAY_FOR_PAUSE);
   }
 
   function handleInteractions(region: string, event: IActionEvent) {
     event.stopPropagation();
     event.preventDefault();
+    clearTimeout(interactionsTimerRef.current)
 
-    //clear any pending timeout
-    clearTimeout(pauseTimerRef.current);
-    if (isStoryPaused) {
+    interactionsTimerRef.current = setTimeout(() => {
+      //clear any pending timeout
+      clearTimeout(pauseTimerRef.current);
+      if (isStoryPaused) {
+        onResume();
+        setIsStoryPaused(false);
+        return;
+      }
       onResume();
-      setIsStoryPaused(false);
-      return;
-    }
-    onResume();
-    if (region == CONSTANTS.EVENT_REGION.LEFT) {
-      onPrevClick();
-      return;
-    }
-    onNextClick();
+      if (region == CONSTANTS.EVENT_REGION.LEFT) {
+        onPrevClick();
+        return;
+      }
+      onNextClick();
+
+      interactionsTimerRef.current = null;
+    }, DELAY_FOR_INTERACTIONS);
   }
 
   function getEvents(region: string) {
