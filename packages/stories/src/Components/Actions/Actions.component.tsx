@@ -11,8 +11,8 @@ interface IActionsProps {
 
 type IActionEvent = React.MouseEvent | React.TouchEvent;
 
-const DELAY_FOR_INTERACTIONS = 100;
-const DELAY_FOR_PAUSE = DELAY_FOR_INTERACTIONS + 200;
+const DELAY_FOR_INTERACTIONS = 50;
+const DELAY_FOR_PAUSE = DELAY_FOR_INTERACTIONS + 150;
 
 export function Actions({
   onNextClick,
