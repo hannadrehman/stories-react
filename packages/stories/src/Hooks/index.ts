@@ -2,10 +2,6 @@ import { useContext, useRef, useEffect } from 'react';
 import { StoriesContext } from '../Contexts';
 import { IStoryContext } from '../types';
 
-interface IUseRef {
-  current: any;
-}
-
 export function useStoriesContext() {
   const context: IStoryContext = useContext(StoriesContext);
   return context;
@@ -16,9 +12,9 @@ export function usePausableTimeout(
   delay: number | null,
   pause: boolean,
 ) {
-  const savedCallback: IUseRef = useRef();
-  const timeRemaining: IUseRef = useRef(delay);
-  const startTimeRef: IUseRef = useRef(Date.now());
+  const savedCallback = useRef(callback);
+  const timeRemaining = useRef(delay);
+  const startTimeRef = useRef(Date.now());
   // Remember the latest callback.
   useEffect(() => {
     savedCallback.current = callback;
@@ -36,7 +32,7 @@ export function usePausableTimeout(
     }
     if (delay !== null && pause === false) {
       startTimeRef.current = Date.now();
-      const timerId = setTimeout(tick, timeRemaining.current);
+      const timerId = setTimeout(tick, timeRemaining.current || 0);
       return () => {
         clearTimeout(timerId);
       };
@@ -45,10 +41,9 @@ export function usePausableTimeout(
   }, [delay, pause]);
 
   useEffect(() => {
-    if (pause) {
-      timeRemaining.current =
-        timeRemaining.current - (Date.now() - startTimeRef.current);
-    }
+    if (!pause || !timeRemaining.current) return;
+    timeRemaining.current =
+      timeRemaining.current - (Date.now() - startTimeRef.current);
   }, [pause]);
 }
 
@@ -56,9 +51,9 @@ export function useAnimationFrame(
   callback: (time: number) => void,
   start: boolean,
 ) {
-  const requestRef: IUseRef = useRef();
-  const previousTimeRef: IUseRef = useRef();
-  const callBackRef: IUseRef = useRef(callback);
+  const requestRef = useRef<number | null>(null);
+  const previousTimeRef = useRef<number | null>(null);
+  const callBackRef = useRef(callback);
 
   useEffect(() => {
     callBackRef.current = callback;
@@ -76,16 +71,16 @@ export function useAnimationFrame(
     if (start !== false) {
       requestRef.current = requestAnimationFrame(animate);
       return () => {
+        if (requestRef.current === null) return;
         cancelAnimationFrame(requestRef.current);
         requestRef.current = null;
         previousTimeRef.current = null;
       };
     }
     return () => {
-      if (requestRef.current) {
-        requestRef.current = null;
-      }
+      if (requestRef.current === null) return;
       cancelAnimationFrame(requestRef.current);
+      requestRef.current = null;
       previousTimeRef.current = null;
     };
   }, [start]);
