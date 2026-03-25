@@ -19,7 +19,7 @@ function Head(props) {
   return (
     <div
       style={{
-        padding: '15px',
+        padding: '8px 16px',
         display: 'flex',
         alignItems: 'center',
         alignContent: 'center',
@@ -41,10 +41,7 @@ function Head(props) {
       </div>
       <div
         style={{
-          color: 'white',
-          fontWeight: '500',
-          fontSize: '14px',
-          marginLeft: '12px',
+          marginLeft: '8px',
         }}
       >
         <p
@@ -53,7 +50,6 @@ function Head(props) {
             fontWeight: '500',
             fontSize: '14px',
             margin: 0,
-            marginLeft: '12px',
           }}
         >
           {props.name}
@@ -64,7 +60,6 @@ function Head(props) {
             fontWeight: '400',
             fontSize: '8px',
             margin: 0,
-            marginLeft: '12px',
           }}
         >
           {`${props.time} hours ago`}
@@ -101,14 +96,26 @@ export default function HeaderStories() {
       ),
     },
     {
-      duration: 7000,
-      type: 'image,
-      url: 'https://images.pexels.com/photos/10964888/pexels-photo-10964888.jpeg?w=300',
+      type: 'video',
+      duration: 10000,
+      url: 'https://assets.mixkit.co/videos/preview/mixkit-man-dancing-under-changing-lights-1240-large.mp4',
       header: (
         <Head
           name="Doe"
           url="https://www.w3schools.com/w3images/avatar5.png"
           time="6"
+        />
+      ),
+    },
+    {
+      type: 'image',
+      url: 'https://images.pexels.com/photos/10985425/pexels-photo-10985425.jpeg?w=300',
+      duration: 15000,
+      header: (
+        <Head
+          name="hannad"
+          url="https://www.w3schools.com/howto/img_avatar.png"
+          time="4"
         />
       ),
     },
@@ -127,5 +134,4 @@ export default function HeaderStories() {
     </div>
   );
 }
-'
 ```
