@@ -45,6 +45,39 @@ sidebar_position: 3
 | `progressBar`         | `string`                             | `-`          |  classname for progress bar                                 |
 | `storyContainer`      | `string`                             | `-`          |  classname for story container                              |
 
+## Dynamic Stories
+
+The `stories` prop is fully reactive. You can update it at any time to add new stories to the stack without interrupting the currently playing story. The progress bar automatically updates to reflect the new total count.
+
+If playback had already finished (the last story completed), adding new stories will automatically resume playback from where it stopped.
+
+```jsx
+import { useState } from 'react';
+import Stories from 'stories-react';
+
+function App() {
+  const [stories, setStories] = useState([
+    { type: 'image', url: 'https://example.com/1.jpg', duration: 5000 },
+    { type: 'image', url: 'https://example.com/2.jpg', duration: 5000 },
+  ]);
+
+  function addMoreStories() {
+    setStories((prev) => [
+      ...prev,
+      { type: 'image', url: 'https://example.com/3.jpg', duration: 5000 },
+      { type: 'video', url: 'https://example.com/4.mp4', duration: 8000 },
+    ]);
+  }
+
+  return (
+    <div>
+      <Stories stories={stories} />
+      <button onClick={addMoreStories}>Load More Stories</button>
+    </div>
+  );
+}
+```
+
 ## Custom Component Story Props
 
 
