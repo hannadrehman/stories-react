@@ -155,27 +155,29 @@ describe('ProgressBar', () => {
   });
 
   it('should reset bar width when transitioning from passed to not passed', () => {
-    const { container, rerender } = renderWithContext(
-      <ProgressBar
-        hasStoryPassed={true}
-        isActive={false}
-        story={makeStory()}
-        isPaused={false}
-      />,
+    const contextValue = {
+      stories: [],
+      width: '100%' as const,
+      height: '100%' as const,
+      defaultDuration: 10000,
+      isPaused: false,
+      classNames: {},
+    };
+
+    const { container, rerender } = render(
+      <StoriesContext.Provider value={contextValue}>
+        <ProgressBar
+          hasStoryPassed={true}
+          isActive={false}
+          story={makeStory()}
+          isPaused={false}
+        />
+      </StoriesContext.Provider>,
     );
 
     // Rerender with hasStoryPassed = false
-    render(
-      <StoriesContext.Provider
-        value={{
-          stories: [],
-          width: '100%',
-          height: '100%',
-          defaultDuration: 10000,
-          isPaused: false,
-          classNames: {},
-        }}
-      >
+    rerender(
+      <StoriesContext.Provider value={contextValue}>
         <ProgressBar
           hasStoryPassed={false}
           isActive={false}
@@ -184,5 +186,10 @@ describe('ProgressBar', () => {
         />
       </StoriesContext.Provider>,
     );
+
+    const bar = container.querySelector('div > div') as HTMLElement;
+    // After transitioning from passed to not passed, bar width should be reset
+    // In jsdom, offsetWidth is 0, so both passed and not-passed states set width based on that
+    expect(['', '0px']).toContain(bar.style.width);
   });
 });

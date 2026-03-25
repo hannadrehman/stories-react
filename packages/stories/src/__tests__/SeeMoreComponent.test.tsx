@@ -14,50 +14,16 @@ function makeStory(overrides: Record<string, any> = {}) {
 }
 
 describe('SeeMoreComponent', () => {
-  it('should return null when seeMore is falsy', () => {
+  it.each([
+    ['seeMore is undefined', { seeMore: undefined, seeMoreComponent: () => <div>Content</div> }],
+    ['seeMore is false', { seeMore: false, seeMoreComponent: () => <div>Content</div> }],
+    ['seeMoreComponent is undefined', { seeMore: true, seeMoreComponent: undefined }],
+    ['seeMoreComponent is null', { seeMore: true, seeMoreComponent: null }],
+    ['both are falsy', { seeMore: false, seeMoreComponent: undefined }],
+  ])('should return null when %s', (_label, overrides) => {
     const { container } = render(
       <SeeMoreComponent
-        story={makeStory({ seeMore: undefined, seeMoreComponent: () => <div>Content</div> })}
-        onClose={jest.fn()}
-      />,
-    );
-    expect(container.innerHTML).toBe('');
-  });
-
-  it('should return null when seeMore is false', () => {
-    const { container } = render(
-      <SeeMoreComponent
-        story={makeStory({ seeMore: false, seeMoreComponent: () => <div>Content</div> })}
-        onClose={jest.fn()}
-      />,
-    );
-    expect(container.innerHTML).toBe('');
-  });
-
-  it('should return null when seeMoreComponent is falsy', () => {
-    const { container } = render(
-      <SeeMoreComponent
-        story={makeStory({ seeMore: true, seeMoreComponent: undefined })}
-        onClose={jest.fn()}
-      />,
-    );
-    expect(container.innerHTML).toBe('');
-  });
-
-  it('should return null when seeMoreComponent is null', () => {
-    const { container } = render(
-      <SeeMoreComponent
-        story={makeStory({ seeMore: true, seeMoreComponent: null })}
-        onClose={jest.fn()}
-      />,
-    );
-    expect(container.innerHTML).toBe('');
-  });
-
-  it('should return null when both seeMore and seeMoreComponent are falsy', () => {
-    const { container } = render(
-      <SeeMoreComponent
-        story={makeStory({ seeMore: false, seeMoreComponent: undefined })}
+        story={makeStory(overrides)}
         onClose={jest.fn()}
       />,
     );

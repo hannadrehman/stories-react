@@ -115,13 +115,15 @@ describe('Video', () => {
   });
 
   it('should show loader on mount', () => {
-    renderWithContext(
+    const { container } = renderWithContext(
       <Video story={makeStory()} onPause={jest.fn()} onResume={jest.fn()} isPaused={false} />,
     );
 
-    // The loader wrapper should be present
-    const loaderWrapper = document.querySelector('[class]');
-    expect(loaderWrapper).toBeTruthy();
+    // The loader should be visible on mount (showLoader is set to true in useEffect)
+    // The loader has a nested div structure with loader class
+    const allDivs = container.querySelectorAll('div');
+    // There should be at least the sound icon div and the loader wrapper + loader div
+    expect(allDivs.length).toBeGreaterThanOrEqual(2);
   });
 
   it('should call onResume after video loads (with 4ms delay)', () => {
@@ -193,26 +195,52 @@ describe('Video', () => {
     expect(localStorageMock.setItem).toHaveBeenCalledWith('RSIsMute', 'false');
   });
 
-  it('should pause video when isPaused context is true', () => {
-    const { rerender } = renderWithContext(
-      <Video story={makeStory()} onPause={jest.fn()} onResume={jest.fn()} isPaused={false} />,
-      { isPaused: false },
+  it('should attempt to play video when isPaused context is false', () => {
+    const context = {
+      stories: [],
+      width: '100%' as const,
+      height: '100%' as const,
+      defaultDuration: 10000,
+      isPaused: false,
+    };
+
+    render(
+      <StoriesContext.Provider value={context}>
+        <Video story={makeStory()} onPause={jest.fn()} onResume={jest.fn()} isPaused={false} />
+      </StoriesContext.Provider>,
     );
 
+    // When isPaused is false, the Video component calls videoRef.current.play()
+    expect(window.HTMLMediaElement.prototype.play).toHaveBeenCalled();
+  });
+
+  it('should call video pause when isPaused context changes to true and video is playing', () => {
+    const context = {
+      stories: [],
+      width: '100%' as const,
+      height: '100%' as const,
+      defaultDuration: 10000,
+      isPaused: false,
+    };
+
+    const { rerender } = render(
+      <StoriesContext.Provider value={context}>
+        <Video story={makeStory()} onPause={jest.fn()} onResume={jest.fn()} isPaused={false} />
+      </StoriesContext.Provider>,
+    );
+
+    // Simulate that the video is currently playing by setting paused to false
+    const video = document.querySelector('video')!;
+    Object.defineProperty(video, 'paused', { value: false, writable: true });
+
     // Rerender with isPaused = true
-    render(
-      <StoriesContext.Provider
-        value={{
-          stories: [],
-          width: '100%',
-          height: '100%',
-          defaultDuration: 10000,
-          isPaused: true,
-        }}
-      >
+    rerender(
+      <StoriesContext.Provider value={{ ...context, isPaused: true }}>
         <Video story={makeStory()} onPause={jest.fn()} onResume={jest.fn()} isPaused={true} />
       </StoriesContext.Provider>,
     );
+
+    expect(video.pause).toHaveBeenCalled();
   });
 
   it('should render fallback text for unsupported video', () => {

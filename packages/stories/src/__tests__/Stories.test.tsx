@@ -18,15 +18,6 @@ beforeAll(() => {
   window.HTMLMediaElement.prototype.load = jest.fn();
 });
 
-function makeImageStory(overrides: Record<string, any> = {}) {
-  return {
-    type: 'image',
-    url: 'http://example.com/photo.jpg',
-    duration: 5000,
-    ...overrides,
-  };
-}
-
 function makeStories(count: number) {
   return Array.from({ length: count }, (_, i) => ({
     type: 'image',
@@ -441,10 +432,6 @@ describe('Stories', () => {
     const stories = [
       { type: 'video', url: 'http://example.com/video.mp4', duration: 5000 },
     ];
-
-    // Mock video play
-    window.HTMLMediaElement.prototype.play = jest.fn().mockResolvedValue(undefined);
-    window.HTMLMediaElement.prototype.pause = jest.fn();
 
     render(
       <Stories stories={stories as any} onStoryChange={jest.fn()} />,

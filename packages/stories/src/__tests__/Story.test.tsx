@@ -165,9 +165,12 @@ describe('Story', () => {
       />,
     );
 
-    // No header div should be rendered
-    // The wrapper should exist but no header class div
-    expect(container.firstChild).toBeTruthy();
+    // The wrapper should exist but no header div should be rendered
+    const wrapper = container.firstChild as HTMLElement;
+    expect(wrapper).toBeTruthy();
+    // The header div has the 'header' CSS class - it should not be present
+    const headerDiv = wrapper.querySelector('[class*="header"]');
+    expect(headerDiv).toBeNull();
   });
 
   it('should not render header when story.header is null', () => {

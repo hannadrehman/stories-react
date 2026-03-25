@@ -14,37 +14,15 @@ function makeStory(overrides: Record<string, any> = {}) {
 }
 
 describe('SeeMore', () => {
-  it('should return null when seeMore is falsy (undefined)', () => {
+  it.each([
+    ['undefined', undefined],
+    ['false', false],
+    ['null', null],
+    ['0', 0],
+    ['empty string', ''],
+  ])('should return null when seeMore is %s', (_label, value) => {
     const { container } = render(
-      <SeeMore story={makeStory({ seeMore: undefined })} onSeeMoreClick={jest.fn()} />,
-    );
-    expect(container.innerHTML).toBe('');
-  });
-
-  it('should return null when seeMore is false', () => {
-    const { container } = render(
-      <SeeMore story={makeStory({ seeMore: false })} onSeeMoreClick={jest.fn()} />,
-    );
-    expect(container.innerHTML).toBe('');
-  });
-
-  it('should return null when seeMore is null', () => {
-    const { container } = render(
-      <SeeMore story={makeStory({ seeMore: null })} onSeeMoreClick={jest.fn()} />,
-    );
-    expect(container.innerHTML).toBe('');
-  });
-
-  it('should return null when seeMore is 0', () => {
-    const { container } = render(
-      <SeeMore story={makeStory({ seeMore: 0 })} onSeeMoreClick={jest.fn()} />,
-    );
-    expect(container.innerHTML).toBe('');
-  });
-
-  it('should return null when seeMore is empty string', () => {
-    const { container } = render(
-      <SeeMore story={makeStory({ seeMore: '' })} onSeeMoreClick={jest.fn()} />,
+      <SeeMore story={makeStory({ seeMore: value })} onSeeMoreClick={jest.fn()} />,
     );
     expect(container.innerHTML).toBe('');
   });

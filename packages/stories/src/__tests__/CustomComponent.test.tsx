@@ -93,7 +93,7 @@ describe('CustomComponent', () => {
     expect(receivedStory.index).toBe(0);
   });
 
-  it('should pass isPaused to custom component', () => {
+  it.each([[true], [false]])('should pass isPaused=%s to custom component', (isPausedValue) => {
     let receivedIsPaused: boolean | null = null;
     const MyComponent = (props: any) => {
       receivedIsPaused = props.isPaused;
@@ -105,30 +105,11 @@ describe('CustomComponent', () => {
         story={makeStory({ component: MyComponent })}
         onPause={jest.fn()}
         onResume={jest.fn()}
-        isPaused={true}
+        isPaused={isPausedValue}
       />,
     );
 
-    expect(receivedIsPaused).toBe(true);
-  });
-
-  it('should pass isPaused=false to custom component', () => {
-    let receivedIsPaused: boolean | null = null;
-    const MyComponent = (props: any) => {
-      receivedIsPaused = props.isPaused;
-      return <div>Paused: {String(props.isPaused)}</div>;
-    };
-
-    render(
-      <CustomComponent
-        story={makeStory({ component: MyComponent })}
-        onPause={jest.fn()}
-        onResume={jest.fn()}
-        isPaused={false}
-      />,
-    );
-
-    expect(receivedIsPaused).toBe(false);
+    expect(receivedIsPaused).toBe(isPausedValue);
   });
 
   it('should render within a wrapper div', () => {
