@@ -20,6 +20,7 @@ interface IStoryClassNames {
   progressBarContainer?: string;
   progressBar?: string;
   storyContainer?: string;
+  headerContainer?: string;
 }
 
 export interface IStoryProps {

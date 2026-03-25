@@ -51,7 +51,11 @@ export function Story(props: IStoryComponentProps) {
   return (
     <div className={`${styles.wrapper} ${classNames?.storyContainer || ''}`}>
       {getStory()}
-      {props.story.header && <div className={styles.header}>{getHeader()}</div>}
+      {props.story.header && (
+        <div className={`${styles.header} ${classNames?.headerContainer || ''}`}>
+          {getHeader()}
+        </div>
+      )}
       <SeeMore onSeeMoreClick={handleSeeMore} story={props.story} />
       {showSeeMoreComponent && (
         <SeeMoreComponent story={props.story} onClose={handleCloseSeeMore} />

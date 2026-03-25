@@ -83,9 +83,9 @@ export default function HeaderStories() {
       ),
     },
     {
-      duration: 7000,
-      type: 'image',
-      url: 'https://images.pexels.com/photos/10964888/pexels-photo-10964888.jpeg?w=300',
+      type: 'video',
+      duration: 10000,
+      url: 'https://assets.mixkit.co/videos/preview/mixkit-man-dancing-under-changing-lights-1240-large.mp4',
       header: (
         <Head
           name="Doe"

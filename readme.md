@@ -117,6 +117,7 @@ export default function ImagesStories() {
 | `progressBarContainer` | `string` | `-`     | classname for single progress bar box container |
 | `progressBar`          | `string` | `-`     | classname for progress bar                      |
 | `storyContainer`       | `string` | `-`     | classname for story container                   |
+| `headerContainer`      | `string` | `-`     | classname for header container                  |
 
 ## Custom Component Story Props
 
