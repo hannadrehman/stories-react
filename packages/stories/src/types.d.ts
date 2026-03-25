@@ -1,4 +1,4 @@
-interface IStoryObject {
+export interface IStoryObject {
   type: string;
   url: string;
   duration: number;
@@ -9,12 +9,12 @@ interface IStoryObject {
   onSeeMoreClick?: (storyIndex: number) => void;
 }
 
-interface IStoryIndexedObject extends IStoryObject {
+export interface IStoryIndexedObject extends IStoryObject {
   index: number;
   calculatedDuration: number;
 }
 
-interface IStoryClassNames {
+export interface IStoryClassNames {
   main?: string;
   progressContainer?: string;
   progressBarContainer?: string;
